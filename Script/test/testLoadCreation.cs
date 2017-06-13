@@ -67,6 +67,13 @@ namespace test010
                         Debug.Log("Es enemigo");
                         Debug.Log(hijo_dung + " la imagen no esta activa.");
                     }
+
+                    if (hijo_dung.tag == "Obstaculo" && !hijo_dung.GetComponent<Collider2D>().enabled)
+                    {
+                        IntegrationTest.Fail();
+                        Debug.Log("El objeto de tag Obstaculo el Collider2D esta desactivado.");
+                        Debug.Log(hijo_dung);
+                    }
                 }
             }
             else

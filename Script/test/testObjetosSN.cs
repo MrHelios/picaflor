@@ -43,6 +43,8 @@ namespace test010
                 string tag = objeto.tag;
                 LayerMask mascara = objeto.layer;
 
+                // DATOS BASICOS:
+
                 if (nombre != datos[j] || tag != datos[j + 1] || mascara != LayerMask.NameToLayer(datos[j + 2]))
                 {
                     IntegrationTest.Fail();
@@ -52,6 +54,8 @@ namespace test010
                     Debug.Log("Tag: " + tag);
                     Debug.Log("Layer: " + mascara);
                 }
+
+                // SPRITERENDERER:
 
                 if (objeto.GetComponent<SpriteRenderer>() == null || objeto.GetComponent<SpriteRenderer>().sprite.name != datos[j + 3] || objeto.GetComponent<SpriteRenderer>().enabled)
                 {
@@ -76,6 +80,36 @@ namespace test010
                     Debug.Log(objeto);
                     Debug.Log("El orden de las capas.");
                     Debug.Log("Se esperaba " + x + " -> " + num_sort_layer);
+                }
+
+                if (objeto.GetComponent<SpriteRenderer>().enabled)
+                {
+                    IntegrationTest.Fail();
+                    Debug.Log(objeto);
+                    Debug.Log("La imagen del objeto esta habilitada.");
+                }
+
+                // COLLIDER:
+
+                if (objeto.tag == "Ground" && objeto.GetComponent<Collider2D>() != null)
+                {
+                    IntegrationTest.Fail();
+                    Debug.Log(objeto);
+                    Debug.Log("El objeto con tag Ground tiene un Collider.");
+                }
+
+                if (objeto.tag == "Obstaculo" && objeto.GetComponent<Collider2D>() == null)
+                {
+                    IntegrationTest.Fail();
+                    Debug.Log(objeto);
+                    Debug.Log("El objeto con tag Obstaculo no tiene un Collider.");
+                }
+
+                if (objeto.tag == "Obstaculo" && objeto.GetComponent<Collider2D>().enabled)
+                {
+                    IntegrationTest.Fail();
+                    Debug.Log(objeto);
+                    Debug.Log("El Collider2D del objeto esta habilitado.");
                 }
             }
         }

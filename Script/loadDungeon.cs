@@ -35,8 +35,13 @@ namespace test010
                     nuevo.transform.GetChild(0).gameObject.SetActive(true);
                     nuevo.transform.GetChild(1).gameObject.SetActive(true);
                 }
-                else
+                else if (nuevo.tag == "Ground")
                     nuevo.GetComponent<SpriteRenderer>().enabled = true;
+                else if (nuevo.tag == "Obstaculo")
+                {
+                    nuevo.GetComponent<SpriteRenderer>().enabled = true;
+                    nuevo.GetComponent<Collider2D>().enabled = true;
+                }
             }
         }
 

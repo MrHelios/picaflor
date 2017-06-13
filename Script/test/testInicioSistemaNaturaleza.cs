@@ -58,7 +58,7 @@ namespace test010
             {
                 IntegrationTest.Fail();
                 Debug.Log(objeto);
-                Debug.Log("Nombre: " + nombre);
+                Debug.Log("Se esperaba nombre: " + n + " -> " + nombre);
                 Debug.Log("Tag: " + tag);
                 Debug.Log("Mascara: " + mascara);                
             }
@@ -76,32 +76,32 @@ namespace test010
 
         protected void estaFlores()
         {
-            test_nombre_tag_layer(2, "flores");            
+            test_nombre_tag_layer(6, "flores");            
         }
 
         protected void estaMonticulos()
         {
-            test_nombre_tag_layer(3, "monticulos");            
+            test_nombre_tag_layer(7, "monticulos");            
         }
 
         protected void estaBaldosasGris()
         {
-            test_nombre_tag_layer(4, "baldosas_gris");            
+            test_nombre_tag_layer(3, "baldosas_gris");            
         }
 
         protected void estaBaldosasVerdes()
         {
-            test_nombre_tag_layer(5, "baldosas_verde");
+            test_nombre_tag_layer(4, "baldosas_verde");
         }
 
         protected void estaBaldosasAguaverdes()
         {
-            test_nombre_tag_layer(6, "baldosas_aguaverde");
+            test_nombre_tag_layer(2, "baldosas_aguaverde");
         }
 
         protected void estaColumnas()
         {
-            test_nombre_tag_layer(7, "columnas");            
+            test_nombre_tag_layer(5, "columnas");            
         }
 
         protected void estaRocas()

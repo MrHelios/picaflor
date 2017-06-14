@@ -34,15 +34,18 @@ namespace test010
                     GameObject obj = new GameObject("backup_" + i);
                     obj.transform.parent = backup.transform;
                     obj.transform.position = hijo.transform.position;
+                    obj.transform.rotation = hijo.transform.rotation;
+                    obj.transform.localScale = hijo.transform.localScale;
 
-                    obj.name = hijo.name.Split(' ')[0];                    
-                    /*
-                    Debug.Log(obj.name.Split(' ').Length);
-                    Debug.Log(obj.name.Split(' ')[0]);
-                    Debug.Log(obj.name.Split(' ')[1]);
-                    */
+                    string[] palabra = acortarPalabra(hijo.name, ' ');
+                    obj.name = palabra[0];
                 }
             }
+        }
+
+        private string[] acortarPalabra(string palabra, char c)
+        {
+            return palabra.Split(c);
         }
 
     }

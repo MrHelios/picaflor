@@ -29,6 +29,8 @@ namespace test010
                 GameObject nuevo = Instantiate(GameObject.Find(obj.name));
                 nuevo.transform.parent = dung.transform;
                 nuevo.transform.position = obj.transform.position;
+                nuevo.transform.rotation = obj.transform.rotation;
+                nuevo.transform.localScale = obj.transform.localScale;
 
                 if (nuevo.tag == "Enemy")
                 {

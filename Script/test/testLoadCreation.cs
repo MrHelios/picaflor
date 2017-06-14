@@ -55,6 +55,20 @@ namespace test010
                         Debug.Log("La posicion no es correcta.");
                     }
 
+                    if (hijo_backup.transform.rotation != hijo_dung.transform.rotation)
+                    {
+                        IntegrationTest.Fail();
+                        Debug.Log("Se esperaba: " + hijo_dung.transform.rotation + " -> " + hijo_backup.transform.rotation);
+                        Debug.Log("La rotation no es correcta.");
+                    }
+
+                    if (hijo_backup.transform.localScale != hijo_dung.transform.localScale)
+                    {
+                        IntegrationTest.Fail();
+                        Debug.Log("Se esperaba: " + hijo_dung.transform.localScale + " -> " + hijo_backup.transform.localScale);
+                        Debug.Log("La localScale no es correcta.");
+                    }
+
                     if (hijo_dung.tag != "Enemy" && !hijo_dung.GetComponent<SpriteRenderer>().enabled)
                     {
                         IntegrationTest.Fail();

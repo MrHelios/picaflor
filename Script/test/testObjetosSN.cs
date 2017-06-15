@@ -209,7 +209,7 @@ namespace test010
             int hijo = 6;
             GameObject cesped = GameObject.Find("SistemaNaturaleza").transform.GetChild(hijo).gameObject;
 
-            int cant_de_tipos = 3;
+            int cant_de_tipos = 4;
             if (cesped.transform.childCount != cant_de_tipos)
                 error_cantidad_objetos(cesped);
             else
@@ -217,6 +217,7 @@ namespace test010
                 string[] datos = { "flores_001", "Ground", "Ground", "flores_suelo_001", "2",
                                    "flor_002", "Ground", "Ground","flores_suelo_002_1", "2",
                                    "flor_003", "Ground", "Ground","flores_suelo_002_3", "2",
+                                   "monticulo_tierra", "Ground", "Ground","flores_suelo_002_0", "2"
                 };
                 test_Nombres_Componentes(cesped, datos);
             }

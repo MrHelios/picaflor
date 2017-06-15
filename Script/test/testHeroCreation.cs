@@ -26,7 +26,7 @@ public class testHeroCreation : MonoBehaviour {
         estaSistemaAtajo(hero);
         estaDetectarFogata(hero);
         estaEquiparArma(hero);
-        estaConservarHero(hero);
+        //estaConservarHero(hero);
         cantidadDeComponentes(hero);
 
         /*
@@ -166,10 +166,11 @@ public class testHeroCreation : MonoBehaviour {
     private void cantidadDeComponentes(GameObject hero)
     {
         int cant = hero.GetComponents<MonoBehaviour>().Length;
-        if (cant != 9)
+        int cantidad_comp = 8;
+        if (cant != cantidad_comp)
         {
             Debug.Log("La cantidad de components principales es distinta a la requerida.");
-            Debug.Log("Requiere: " + 9 + " y se encontraron: " + cant);
+            Debug.Log("Requiere: " + cantidad_comp + " y se encontraron: " + cant);
             IntegrationTest.Fail();
         }
     }
@@ -214,17 +215,33 @@ public class testHeroCreation : MonoBehaviour {
 
         if (imagen.GetComponent<SpriteRenderer>().enabled)
         {
-            Debug.Log("La imagen esta habilitada en la pantalla de carga.");
             IntegrationTest.Fail();
+            Debug.Log("La imagen esta habilitada en la pantalla de carga.");
         }
 
         if (!hay_imagen || !que_imagen)
         {
+            IntegrationTest.Fail();
             Debug.Log("La imagen del heroe no es valida.");
             Debug.Log("Hay Imagen: " + hay_imagen);
             Debug.Log("Que Imagen: " + que_imagen);
+        }
+
+        string nombre_capa = "Player";
+        if (imagen.GetComponent<SpriteRenderer>().sortingLayerName != nombre_capa)
+        {
             IntegrationTest.Fail();
-        }        
+            Debug.Log("La clasificacion de la imagen no es correcta.");
+            Debug.Log("Se esperaba: " + nombre_capa + " -> " + imagen.GetComponent<SpriteRenderer>().sortingLayerName);
+        }
+
+        int orden_capa = 2;
+        if (imagen.GetComponent<SpriteRenderer>().sortingOrder != orden_capa)
+        {
+            IntegrationTest.Fail();
+            Debug.Log("El orden de la imagen no es correcta.");
+            Debug.Log("Se esperaba: " + orden_capa + " -> " + imagen.GetComponent<SpriteRenderer>().sortingOrder);
+        }
     }
 
     /*
@@ -254,6 +271,22 @@ public class testHeroCreation : MonoBehaviour {
                 Debug.Log("Que Imagen: " + que_imagen);
                 IntegrationTest.Fail();
             }
+
+            string nombre_capa = "Player";
+            if (imagen.GetComponent<SpriteRenderer>().sortingLayerName != nombre_capa)
+            {
+                IntegrationTest.Fail();
+                Debug.Log("La clasificacion de la imagen no es correcta.");
+                Debug.Log("Se esperaba: " + nombre_capa + " -> " + imagen.GetComponent<SpriteRenderer>().sortingLayerName);
+            }
+
+            int orden_capa = 1;
+            if (imagen.GetComponent<SpriteRenderer>().sortingOrder != orden_capa)
+            {
+                IntegrationTest.Fail();
+                Debug.Log("El orden de la imagen no es correcta.");
+                Debug.Log("Se esperaba: " + orden_capa + " -> " + imagen.GetComponent<SpriteRenderer>().sortingOrder);
+            }
         }
     }
 
@@ -282,6 +315,22 @@ public class testHeroCreation : MonoBehaviour {
             Debug.Log("Que Imagen: " + que_imagen);
             IntegrationTest.Fail();
         }
+
+        string nombre_capa = "Player";
+        if (imagen.GetComponent<SpriteRenderer>().sortingLayerName != nombre_capa)
+        {
+            IntegrationTest.Fail();
+            Debug.Log("La clasificacion de la imagen no es correcta.");
+            Debug.Log("Se esperaba: " + nombre_capa + " -> " + imagen.GetComponent<SpriteRenderer>().sortingLayerName);
+        }
+
+        int orden_capa = -1;
+        if (imagen.GetComponent<SpriteRenderer>().sortingOrder != orden_capa)
+        {
+            IntegrationTest.Fail();
+            Debug.Log("El orden de la imagen no es correcta.");
+            Debug.Log("Se esperaba: " + orden_capa + " -> " + imagen.GetComponent<SpriteRenderer>().sortingOrder);
+        }
     }
 
     /*
@@ -308,6 +357,22 @@ public class testHeroCreation : MonoBehaviour {
             Debug.Log("Hay Imagen: " + hay_imagen);
             Debug.Log("Que Imagen: " + que_imagen);
             IntegrationTest.Fail();
+        }
+
+        string nombre_capa = "Player";
+        if (imagen.GetComponent<SpriteRenderer>().sortingLayerName != nombre_capa)
+        {
+            IntegrationTest.Fail();
+            Debug.Log("La clasificacion de la imagen no es correcta.");
+            Debug.Log("Se esperaba: " + nombre_capa + " -> " + imagen.GetComponent<SpriteRenderer>().sortingLayerName);
+        }
+
+        int orden_capa = 0;
+        if (imagen.GetComponent<SpriteRenderer>().sortingOrder != orden_capa)
+        {
+            IntegrationTest.Fail();
+            Debug.Log("El orden de la imagen no es correcta.");
+            Debug.Log("Se esperaba: " + orden_capa + " -> " + imagen.GetComponent<SpriteRenderer>().sortingOrder);
         }
     }
 

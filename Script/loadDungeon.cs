@@ -9,15 +9,20 @@ namespace test010
         public string nombreGO;
 	
 	    void Awake () {
-            load();
+            load_d();
 	    }
+
+        void Start()
+        {
+            load_script_imagen_h();
+        }
 
         public string getNombre()
         {
             return nombreGO;
         }
 
-        private void load()
+        private void load_d()
         {
             GameObject dung = GameObject.Find("Dungeon");
             GameObject load_go = GameObject.Find(nombreGO);
@@ -47,6 +52,24 @@ namespace test010
             }
         }
 
+        private void load_script_imagen_h()
+        {
+            GameObject hero = GameObject.Find("Hero");
+
+            MonoBehaviour[] scripts = hero.GetComponents<MonoBehaviour>();
+            for (int i = 0; i < scripts.Length; i++)
+            {
+                scripts[i].enabled = true;
+            }
+
+            hero.GetComponent<Collider2D>().enabled = true;
+
+            for (int i = 0; i < hero.transform.childCount; i++)
+            {
+                if (hero.transform.GetChild(i).GetComponent<SpriteRenderer>() != null && hero.transform.GetChild(i).name != "sangreHero")
+                    hero.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
     }
 }
 

@@ -5,14 +5,11 @@ using UnityEngine;
 using test010;
 
 public class testInicioHeroDungeon : MonoBehaviour {
+
+    private bool activo;
 	
 	void Start () {
-        GameObject hero = GameObject.Find("Hero");
-        estaTodoActivado(hero);
-        NOestaConservarHero(hero);
-        todasImagenesHabilitadas(hero);
-
-        IntegrationTest.Pass();
+        activo = false;        
 	}
 
     private void estaTodoActivado(GameObject hero)
@@ -28,11 +25,11 @@ public class testInicioHeroDungeon : MonoBehaviour {
         }
     }
 
-    private void NOestaConservarHero(GameObject hero)
+    private void estaColliderHabilitado(GameObject hero)
     {
-        if (hero.GetComponent<conservarHero>() != null)
+        if (!hero.GetComponent<Collider2D>().enabled)
         {
-            Debug.Log("El script de conservar Hero esta activo!");
+            Debug.Log("El collider2D del Hero no esta activado.");
             IntegrationTest.Fail();
         }
     }
@@ -44,12 +41,26 @@ public class testInicioHeroDungeon : MonoBehaviour {
             GameObject hijo = hero.transform.GetChild(i).gameObject;
             if (hijo.GetComponent<SpriteRenderer>() != null)
             {
-                if (!hijo.GetComponent<SpriteRenderer>().enabled)
+                if (!hijo.GetComponent<SpriteRenderer>().enabled && hijo.name != "sangreHero")
                 {
                     Debug.Log("La imagen del GO " + hijo + " no esta habilitada.");
                     IntegrationTest.Fail();
                 }
             }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (!activo)
+        {
+            activo = true;
+            GameObject hero = GameObject.Find("Hero");
+            estaTodoActivado(hero);
+            estaColliderHabilitado(hero);
+            todasImagenesHabilitadas(hero);
+
+            IntegrationTest.Pass();
         }
     }
 

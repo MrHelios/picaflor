@@ -6,24 +6,14 @@ namespace test010
 {
     public class loadDungeon : MonoBehaviour {
 
-        public string nombreGO;
-	
-	    void Awake () {
-            load_d();
-            load_class();
-	    }
-
-        void Start()
-        {
-            load_script_imagen_h();
-        }
+        public string nombreGO;	    
 
         public string getNombre()
         {
             return nombreGO;
         }
 
-        private void load_d()
+        protected void load_d()
         {
             GameObject dung = GameObject.Find("Dungeon");
             GameObject load_go = GameObject.Find(nombreGO);
@@ -53,7 +43,7 @@ namespace test010
             }
         }
 
-        private void load_script_imagen_h()
+        protected void load_script_imagen_h()
         {
             GameObject hero = GameObject.Find("Hero");
 
@@ -72,7 +62,7 @@ namespace test010
             }
         }
 
-        private void load_class()
+        protected void load_class()
         {
             string[] datos = { "dispJugador", "rajar" };
 

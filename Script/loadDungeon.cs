@@ -10,6 +10,7 @@ namespace test010
 	
 	    void Awake () {
             load_d();
+            load_class();
 	    }
 
         void Start()
@@ -68,6 +69,23 @@ namespace test010
             {
                 if (hero.transform.GetChild(i).GetComponent<SpriteRenderer>() != null && hero.transform.GetChild(i).name != "sangreHero")
                     hero.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
+
+        private void load_class()
+        {
+            string[] datos = { "dispJugador", "rajar" };
+
+            GameObject SC = GameObject.Find("SistemaClases");
+            GameObject tu = SC.transform.GetChild(0).gameObject;
+
+            for (int i = 0; i < datos.Length; i++)
+            {
+                GameObject hab = GameObject.Find(datos[i]);
+                GameObject nuevo = Instantiate(hab);
+
+                nuevo.transform.parent = tu.transform;
+                nuevo.name = hab.name;
             }
         }
     }

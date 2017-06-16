@@ -119,12 +119,14 @@ namespace test010
             int hijo = 0;
             GameObject cesped = GameObject.Find("SistemaNaturaleza").transform.GetChild(hijo).gameObject;
 
-            int cant_de_tipos = 1;
+            int cant_de_tipos = 2;
             if (cesped.transform.childCount != cant_de_tipos)
                 error_cantidad_objetos(cesped);
             else
             {
-                string[] datos = { "cesped_oscuro_fondo", "Ground", "Ground", "suelo02", "0" };
+                string[] datos = { "cesped_oscuro_fondo", "Ground", "Ground", "suelo02", "0",
+                                   "cesped_semioscuro_fondo", "Ground", "Ground", "campo_verde_00", "0"
+                };
                 test_Nombres_Componentes(cesped, datos);
             }
         }
@@ -194,12 +196,14 @@ namespace test010
             int hijo = 5;
             GameObject cesped = GameObject.Find("SistemaNaturaleza").transform.GetChild(hijo).gameObject;
 
-            int cant_de_tipos = 1;
+            int cant_de_tipos = 2;
             if (cesped.transform.childCount != cant_de_tipos)
                 error_cantidad_objetos(cesped);
             else
             {
-                string[] datos = { "columna00", "Obstaculo", "Obstaculo", "columna00", "0" };
+                string[] datos = { "columna00", "Obstaculo", "Obstaculo", "columna00", "0",
+                                   "columna01", "Obstaculo", "Obstaculo", "columna02", "0"
+                };
                 test_Nombres_Componentes(cesped, datos);
             }
         }
@@ -228,13 +232,14 @@ namespace test010
             int hijo = 7;
             GameObject cesped = GameObject.Find("SistemaNaturaleza").transform.GetChild(hijo).gameObject;
 
-            int cant_de_tipos = 2;
+            int cant_de_tipos = 3;
             if (cesped.transform.childCount != cant_de_tipos)
                 error_cantidad_objetos(cesped);
             else
             {
                 string[] datos = { "monticulo_chico", "Obstaculo", "Obstaculo", "monticulo_000", "0",
-                                   "monticulo_mediano", "Obstaculo", "Obstaculo","monticulo_001", "0"
+                                   "monticulo_mediano", "Obstaculo", "Obstaculo","monticulo_001", "0",
+                                   "monticulo_chico_1", "Obstaculo", "Obstaculo", "monticulo_002", "0",
                 };
                 test_Nombres_Componentes(cesped, datos);
             }
@@ -245,13 +250,15 @@ namespace test010
             int hijo = 9;
             GameObject arboles = GameObject.Find("SistemaNaturaleza").transform.GetChild(hijo).gameObject;
 
-            int cant_de_tipos = 2;
+            int cant_de_tipos = 3;
             if (arboles.transform.childCount != cant_de_tipos)
                 error_cantidad_objetos(arboles);
             else
             {
                 string[] datos = { "arbol_sin_hojas","Obstaculo","Obstaculo", "arbol00", "0",
-                                   "arbol_copa", "Obstaculo", "Obstaculo", "arbol01", "0" };
+                                   "arbol_copa", "Obstaculo", "Obstaculo", "arbol01", "0",
+                                   "arbol_copa_1", "Obstaculo", "Obstaculo", "arbol02", "0"
+                };
                 test_Nombres_Componentes(arboles, datos);
             }
         }

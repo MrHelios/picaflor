@@ -14,6 +14,8 @@ public class testInicioUI : MonoBehaviour {
         estaPanelHabilidades();
         estaVentanaPersonaje();
 
+        botones_panel_habilidades(3, 7);
+
         IntegrationTest.Pass();
 	}
 
@@ -112,11 +114,75 @@ public class testInicioUI : MonoBehaviour {
     private void estaUIEnergia()
     {
         analizar(2, "ui_energia", true, "UIEnergia");
-    }    
+    }
+
+    private void botones_panel_habilidades(int pos, int cant_hijos)
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        GameObject ui = canvas.transform.GetChild(pos).gameObject;
+
+        // ATAJOS
+        int cant = ui.transform.childCount;
+        if (cant_hijos != cant)
+        {
+            IntegrationTest.Fail();
+            Debug.Log("La cantidad de hijos no es la esperada.");
+        }
+        
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject atajo = ui.transform.GetChild(i).gameObject;
+
+            if (atajo.name != "atajo_" + i)
+            {
+                IntegrationTest.Fail();
+                Debug.Log("El nombre del atajo no es correcto.");
+                Debug.Log("Se esperaba:  atajo_" + i + " -> " + atajo.name);
+            }
+
+            if (atajo.GetComponent<Button>() == null || !atajo.GetComponent<Button>().enabled)
+            {
+                IntegrationTest.Fail();
+                Debug.Log(atajo);
+                Debug.Log("El GO no tiene la componente boton o esta desactivado.");
+            }
+        }
+
+        // PERSONAJE
+        GameObject hijo = ui.transform.GetChild(5).gameObject;
+        if (hijo.name != "boton_personaje")
+        {
+            IntegrationTest.Fail();
+            Debug.Log("El nombre del boton del personaje no es correcto");
+            Debug.Log("Se esperaba:  boton_personaje -> " + hijo.name);
+        }
+
+        if (hijo.GetComponent<Button>() == null || !hijo.GetComponent<Button>().enabled)
+        {
+            IntegrationTest.Fail();
+            Debug.Log("El GO boton_personaje no tiene boton como componente o esta desactivado.");
+        }
+
+        // CONFIG
+        hijo = ui.transform.GetChild(6).gameObject;
+        if (hijo.name != "boton_config")
+        {
+            IntegrationTest.Fail();
+            Debug.Log("El nombre del boton_config no es correcto");
+            Debug.Log("Se esperaba:  boton_config -> " + hijo.name);
+        }
+
+        if (hijo.GetComponent<Button>() == null || !hijo.GetComponent<Button>().enabled)
+        {
+            IntegrationTest.Fail();
+            Debug.Log("El GO boton_config no tiene boton como componente o esta desactivado.");
+        }
+
+    }
 
     private void estaPanelHabilidades()
     {
-        analizar(3, "ui_panel_habilidades", true, "Panel Habilidades");
+        analizar(3, "ui_panel_habilidades", true, "Panel Habilidades");        
     }
 
     private void estaVentanaPersonaje()

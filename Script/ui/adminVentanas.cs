@@ -1,36 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace test010
 {
     public class adminVentanas : MonoBehaviour {
 
-        public GameObject ventana;
-        private bool estado;
-
-        private void Start()
-        {
-            estado = false;
-        }
+        public GameObject ventana;        
 
         public void setVentana(GameObject go)
         {
-            ventana = go;
-            estado = false;
+            ventana = go;            
         }
 
-        public void cambiarEstado()
+        protected void abrir_ventana()
         {
-            Debug.Log("Entra");
+            Button boton = gameObject.GetComponent<Button>();
 
-            if (estado)
-                ventana.SetActive(false);
-            else
-                ventana.SetActive(true);
-            estado = !estado;
+            boton.onClick.AddListener(() => abrir());
         }
-    
+
+        protected void cerrar_ventana()
+        {
+            Button boton = gameObject.GetComponent<Button>();
+
+            boton.onClick.AddListener(() => cerrar());
+        }
+
+        public void abrir()
+        {            
+            ventana.SetActive(true);            
+        }
+
+        protected void cerrar()
+        {
+            ventana.SetActive(false);
+        }
 
     }
 }

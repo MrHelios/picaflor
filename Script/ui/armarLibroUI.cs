@@ -29,9 +29,20 @@ namespace test010
             }
         }
 
-        void FixedUpdate()
+        private void armarLibro()
         {
-            armar();
+            GameObject tu = GameObject.Find("SistemaClases").transform.GetChild(0).gameObject;
+
+            for (int i = 0; i < tu.transform.childCount; i++)
+            {
+                gameObject.transform.GetChild(i).GetComponent<Image>().sprite = tu.transform.GetChild(i).GetComponent<habilidad>().icono_hab;
+                gameObject.transform.GetChild(i).GetComponent<Button>().interactable = true;                
+            }
+        }
+
+        void Start()
+        {
+            armarLibro();
         }
 
     }

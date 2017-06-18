@@ -30,6 +30,11 @@ namespace test010
 
                 if (nuevo.tag == "Enemy")
                 {
+                    nuevo.GetComponent<Collider2D>().enabled = true;
+                    nuevo.GetComponent<atribPrincipales>().enabled = true;
+                    nuevo.GetComponent<detectarJugadorIA>().enabled = true;
+                    nuevo.GetComponent<esquivarObstaculosIA>().enabled = true;
+
                     nuevo.transform.GetChild(0).gameObject.SetActive(true);
                     nuevo.transform.GetChild(1).gameObject.SetActive(true);
                 }

@@ -7,12 +7,7 @@ using UnityEngine.SceneManagement;
 public class screenLoading : MonoBehaviour {
 
     private bool loadScene;
-    private int scene;
-
-    void Awake()
-    {
-        scene = -1;    
-    }
+    public int scene;    
 
     public void setScene(int i)
     {
@@ -30,7 +25,7 @@ public class screenLoading : MonoBehaviour {
 	
 	void Update ()
     {
-        if (scene != -1 && !loadScene)
+        if (!loadScene)
         {
             loadScene = true;
             StartCoroutine(loadNewScene());

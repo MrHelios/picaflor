@@ -7,10 +7,16 @@ namespace test010
 {
     public class loadSceneMuerte : MonoBehaviour {
 
+        protected int loadingScreen;
+
+        private void Awake()
+        {
+            loadingScreen = 1;
+        }
+
         public void muerte()
         {
-            Debug.Log("Has perdido");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(loadingScreen);
         }
 
     }

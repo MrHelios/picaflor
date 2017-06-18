@@ -13,9 +13,11 @@ Futuro:
 
 ---------------------------------------------------
 
-1. Copiar escala y rotacion de los objetos.
-2. Hacer test movimiento del druida.
-3. Tomar todo el escenario dungeon y ponerlo a testear. (Hay problemas de compatibilidad de nombres)
+FALTA:
+* implementar sistema agregar habilidades.
+* implementar sistema UI mana, fatiga.
+* implementar sistema santuario.
+* implementar sistema de nivel.
 
 ---------------------------------------------------
 

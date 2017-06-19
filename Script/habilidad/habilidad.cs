@@ -6,10 +6,13 @@ namespace test010
 {
     public abstract class habilidad : MonoBehaviour {
 
-        protected float cooldown;    
+        protected float mana;
+        protected float aguante;
+        protected float cooldown;
         protected float ultimoUso;
         protected KeyCode tecla;
         protected int nivel_necesario;
+
         public Sprite icono_hab;
 
         public int getNivelNecesario()

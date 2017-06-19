@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,7 +18,10 @@ namespace test010
         {
             // Valores por defecto.
             gameObject.transform.position = pos_caso_de_muerte;
+
             vida = vida_max = 30;
+            mana = mana_max = 30;
+            aguante = aguante_max = 30;
 
             experiencia = 0;
             nivel = 1;
@@ -28,10 +32,7 @@ namespace test010
 
         void Start()
         {            
-            if (SceneManager.GetActiveScene().buildIndex == 2)
-                GameObject.Find("Hero").gameObject.transform.position = new Vector3(0, 0, 0);
-            else if (SceneManager.GetActiveScene().buildIndex == 1)
-                pos_caso_de_muerte = new Vector3(-134,0.5f,0);            
+            GameObject.Find("Hero").gameObject.transform.position = new Vector3(0, 0, 0);            
         }
 
         public void setClase(string c)
@@ -44,45 +45,7 @@ namespace test010
             return clase;
         }
 
-        public float getExperiencia()
-        {
-            return experiencia;
-        }
-
-        private void armarHabilidadClase()
-        {
-            if (clase == "Mago")
-            {
-                habilidad h = GameObject.Find("Mago").gameObject.transform.GetChild(0).GetComponent<habilidad>();
-                gameObject.transform.GetChild(0).gameObject.AddComponent(h.GetType());
-                gameObject.GetComponent<sistemaAtajo>().armarLibroAtajos();
-            }
-            else if (clase == "Guerrero")
-            {
-                habilidad h = GameObject.Find("Guerrero").gameObject.transform.GetChild(0).GetComponent<habilidad>();
-                gameObject.transform.GetChild(0).gameObject.AddComponent(h.GetType());
-                gameObject.GetComponent<sistemaAtajo>().armarLibroAtajos();
-            }            
-        }
-
-        private void ui_exp_modificacion()
-        {
-            gameObject.GetComponent<uiPlayerExp>().modificar(experiencia / exp_proximo_nivel);
-        }
-
-        private void nivelNuevo()
-        {
-            experiencia = 0;
-            ui_exp_modificacion();
-            nivel++;
-            Debug.Log(nivel);
-            exp_proximo_nivel = nivel * 10;
-        }
-
-        public void reestablecerMaxVida()
-        {
-            vida = vida_max;
-        }
+         // EXPERIENCIA
 
         public void sumarExp(float f)
         {
@@ -90,9 +53,28 @@ namespace test010
 
             if (experiencia >= exp_proximo_nivel)
                 nivelNuevo();
-            else
-                ui_exp_modificacion();
         }
+
+        public float getExperiencia()
+        {
+            return experiencia;
+        }
+        
+        private void nivelNuevo()
+        {
+            experiencia = experiencia - exp_proximo_nivel;            
+            nivel++;
+            
+            // ESTA ES LA FUNCION PARA SUBIR DE NIVEL.
+            exp_proximo_nivel = nivel * 10;
+        }
+
+        // VIDA
+
+        public void reestablecerMaxVida()
+        {
+            vida = vida_max;
+        }        
 
         public override void perderVida(float f)
         {
@@ -108,6 +90,38 @@ namespace test010
             if (vida <= 0) {
                 gameObject.GetComponent<loadSceneMuerte>().muerte();
             }        
+        }
+
+        // MANA
+
+        public void reestablecerMaxMana()
+        {
+            mana = mana_max;
+        }
+
+        public override void perderMana(float m)
+        {
+            if (mana >= m)
+            {
+                mana -= m;
+                gameObject.GetComponent<uiPlayerMana>().modificar(mana / mana_max);
+            }
+        }
+
+        // AGUANTE
+
+        public void reestablecerMaxAguante()
+        {
+            aguante = aguante_max;
+        }
+
+        public override void perderAguante(float a)
+        {
+            if (aguante >= a)
+            {
+                aguante -= a;
+                gameObject.GetComponent<uiPlayerMana>().modificar(aguante / aguante_max);
+            }
         }
 
         public void setPosicionMuerte(Vector3 v)

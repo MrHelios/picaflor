@@ -14,11 +14,13 @@ namespace test010
         void Awake()
         {
             nivel_necesario = 1;
-            hero = GameObject.Find("Hero").transform;
+            mana = 5;
+            aguante = 0;            
         }
 
         void Start ()
-        {        
+        {
+            hero = GameObject.Find("Hero").transform;
             queTecla();
             setVelocidad(15);
 
@@ -42,6 +44,8 @@ namespace test010
 
         public override void efecto()
         {
+            hero.GetComponent<atrib>().perderMana(mana);
+
             Vector3 mouse = Input.mousePosition;
             Vector3 direccion = Camera.main.ScreenToWorldPoint(mouse);
             direccion = new Vector2(direccion.x - hero.position.x, direccion.y - hero.position.y);
@@ -64,7 +68,7 @@ namespace test010
 
         void FixedUpdate ()
         {
-            if (Time.time >= ultimoUso && Input.GetKeyDown(tecla))
+            if (Time.time >= ultimoUso && Input.GetKeyDown(tecla) && hero.GetComponent<atrib>().tieneMana(mana))
             {
                 efecto();
                 efectoCooldown();

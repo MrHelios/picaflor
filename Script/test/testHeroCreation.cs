@@ -126,6 +126,24 @@ public class testHeroCreation : MonoBehaviour {
         }
     }
 
+    private void estaUIPlayerMana(GameObject hero)
+    {
+        if (hero.GetComponent<uiPlayerMana>() == null)
+        {
+            Debug.Log("UI para el mana del jugador.");
+            IntegrationTest.Fail();
+        }
+    }
+
+    private void estaUIPlayerAguante(GameObject hero)
+    {
+        if (hero.GetComponent<uiPlayerAguante>() == null)
+        {
+            Debug.Log("UI para el aguante del jugador.");
+            IntegrationTest.Fail();
+        }
+    }
+
     private void estaSistemaAtajo(GameObject hero)
     {
         if (hero.GetComponent<sistemaAtajo>() == null)
@@ -165,7 +183,7 @@ public class testHeroCreation : MonoBehaviour {
     private void cantidadDeComponentes(GameObject hero)
     {
         int cant = hero.GetComponents<MonoBehaviour>().Length;
-        int cantidad_comp = 9;
+        int cantidad_comp = 10;
         if (cant != cantidad_comp)
         {
             Debug.Log("La cantidad de components principales es distinta a la requerida.");

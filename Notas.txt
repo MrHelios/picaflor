@@ -14,8 +14,6 @@ Futuro:
 ---------------------------------------------------
 
 FALTA:
-* implementar sistema agregar habilidades.
-* implementar sistema UI mana, fatiga.
 * implementar sistema santuario.
 * implementar sistema de nivel.
 

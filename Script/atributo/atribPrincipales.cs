@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,7 +45,16 @@ namespace test010
             }
         }
 
-    }
+        public override void perderMana(float m)
+        {
+            
+        }
 
+        public override void perderAguante(float m)
+        {
+            
+        }
+
+    }
 }
 

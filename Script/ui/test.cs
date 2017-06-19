@@ -7,8 +7,18 @@ namespace test010
     public class test : MonoBehaviour {
 
         private int habilidad;
-        private int cant_habilidades;
-    
+        private int cant_habilidades;        
+
+        public void setHabilidad(int i)
+        {
+            habilidad = i;
+        }
+
+        public int getHabilidad()
+        {
+            return habilidad;
+        }
+
         public void listaDeAtajos()
         {
             cant_habilidades = 5;
@@ -22,18 +32,8 @@ namespace test010
                 clase = GameObject.Find("Mago").transform.GetChild(i).gameObject;
                 encontrado = clase.GetComponent<habilidad>().icono_hab == gameObject.GetComponent<Image>().sprite;
                 if (encontrado)
-                    GameObject.Find("habilidadNueva").gameObject.GetComponent<test>().setHabilidad(i);                        
+                    GameObject.Find("habilidadNueva").gameObject.GetComponent<test>().setHabilidad(i);
             }
-        }
-
-        public void setHabilidad(int i)
-        {
-            habilidad = i;
-        }
-
-        public int getHabilidad()
-        {
-            return habilidad;
         }
 
         public void cambiarAtajos()
@@ -51,8 +51,7 @@ namespace test010
             GameObject.Find("Hero").transform.GetChild(j).gameObject.AddComponent(h_nueva.GetType());        
 
             GameObject.Find("Hero").GetComponent<sistemaAtajo>().armarLibroAtajos();        
-        }
-
+        } 
     
     }
 }

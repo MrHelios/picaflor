@@ -12,7 +12,7 @@ namespace test010
         public void setVentana(GameObject go)
         {
             ventana = go;            
-        }
+        }        
 
         protected void abrir_ventana()
         {

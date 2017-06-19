@@ -9,19 +9,22 @@ namespace test010
 
         protected Transform municion;
         protected float velocidad;
+        protected Transform hero;
 
         void Awake()
         {
             nivel_necesario = 1;
+            hero = GameObject.Find("Hero").transform;
         }
 
         void Start ()
         {        
             queTecla();
             setVelocidad(15);
-            int max = GameObject.Find("Hero").transform.childCount;
-            setMunicion(gameObject.transform.parent.transform.GetChild(max - 1).transform.GetChild(0));
-    
+
+            GameObject mun = GameObject.Find("SistemaMunicion");
+            int pos = 0;
+            setMunicion(mun.transform.GetChild(pos));    
 
             cooldown = 0.5f;
             ultimoUso = Time.time - cooldown;
@@ -41,12 +44,12 @@ namespace test010
         {
             Vector3 mouse = Input.mousePosition;
             Vector3 direccion = Camera.main.ScreenToWorldPoint(mouse);
-            direccion = new Vector2(direccion.x - municion.transform.position.x, direccion.y - municion.transform.position.y);
+            direccion = new Vector2(direccion.x - hero.position.x, direccion.y - hero.position.y);
             float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
 
             Transform nuevo = Instantiate(municion);
             nuevo.gameObject.SetActive(true);
-            nuevo.position = new Vector2(municion.position.x, municion.position.y);
+            nuevo.position = new Vector2(hero.position.x, hero.position.y);
             nuevo.rotation = Quaternion.AngleAxis(angulo, Vector3.forward);
             nuevo.gameObject.GetComponent<SpriteRenderer>().enabled = true;
             nuevo.gameObject.GetComponent<destruirObjeto>().enabled = true;

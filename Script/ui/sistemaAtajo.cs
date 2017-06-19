@@ -6,12 +6,12 @@ using UnityEngine.UI;
 namespace test010
 {
     public class sistemaAtajo : MonoBehaviour {
-
+        
         void Start()
         {        
-            armarLibroAtajos();
+            //armarLibroAtajos();            
         }
-
+        
         public void armarLibroAtajos()
         {
             for (int i = 0; i < 5; i++)

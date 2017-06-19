@@ -258,6 +258,14 @@ namespace test010
             }
 
             cantidadCorrectaElementos(ui, 9, "La cantidad de botones en la ventana habilidades no es correcta.");
+
+            for (int i = 0; i < 8; i++)
+                if (ui.transform.GetChild(i).GetComponent<cambiarAtajo>() == null)
+                {
+                    IntegrationTest.Fail();
+                    Debug.Log(ui.transform.GetChild(i));
+                    Debug.Log("En el boton de atajo falta el script cambiarAtajos.");
+                }
         }
 
         private void ventana_config()

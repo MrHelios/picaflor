@@ -24,8 +24,13 @@ namespace test010
 
         public override void efecto()
         {
-            Transform t = gameObject.transform.parent.gameObject.transform.GetChild(gameObject.transform.parent.gameObject.transform.childCount - 1);
-            Collider2D col = Physics2D.OverlapArea(t.position, t.GetChild(0).gameObject.transform.position, LayerMask.GetMask("Enemy"));        
+            GameObject.Find("Hero").gameObject.GetComponent<Animator>().SetTrigger("atajo");
+
+            Transform arma = gameObject.transform.parent.gameObject.transform.GetChild(gameObject.transform.parent.gameObject.transform.childCount - 1);
+            Transform arma_punto_1 = arma.GetChild(0).transform;
+            Transform arma_punto_2 = arma.GetChild(1).transform;
+
+            Collider2D col = Physics2D.OverlapArea(arma_punto_1.position, arma_punto_2.position, LayerMask.GetMask("Enemy"));
             if(col != null)
                 if (col.gameObject.GetComponent<atribPrincipales>() != null)
                     col.gameObject.GetComponent<atribPrincipales>().perderVida(damage);
@@ -34,12 +39,11 @@ namespace test010
         void FixedUpdate()
         {
             if (Time.time >= ultimoUso && Input.GetKeyDown(tecla))
-            {
+            {                
                 efecto();
                 efectoCooldown();
             }
         }
-
 
     }
 }

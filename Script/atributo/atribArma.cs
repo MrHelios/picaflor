@@ -9,7 +9,7 @@ namespace test010
         public int damage;
 	
 	    void Start () {
-		
+            damage = 10;
 	    }
 
         public void setDamage(int d)

@@ -16,6 +16,7 @@ Futuro:
 FALTA:
 * implementar sistema santuario.
 * implementar sistema de nivel.
+* implementar sistema armas.
 
 ---------------------------------------------------
 

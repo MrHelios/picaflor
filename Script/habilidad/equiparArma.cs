@@ -23,9 +23,7 @@ namespace test010
 
         public void equipar()
         {
-            GameObject arma = GameObject.Find(nombre).gameObject;
-            arma_actual.transform.rotation = arma.transform.rotation;
-            arma_actual.transform.localScale = arma.transform.localScale;
+            GameObject arma = GameObject.Find(nombre).gameObject;            
 
             arma_actual.GetComponent<SpriteRenderer>().sprite = arma.GetComponent<SpriteRenderer>().sprite;
             arma_actual.GetComponent<atribArma>().setDamage(arma.GetComponent<atribArma>().getDamage());            

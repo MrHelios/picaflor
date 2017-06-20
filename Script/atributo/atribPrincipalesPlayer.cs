@@ -21,18 +21,30 @@ namespace test010
 
             vida = vida_max = 30;
             mana = mana_max = 30;
-            aguante = aguante_max = 30;
-
-            experiencia = 0;
-            nivel = 1;
-            exp_proximo_nivel = nivel * 10;
+            aguante = aguante_max = 30;            
 
             clase = "Mago";
         }
 
         void Start()
-        {            
-            GameObject.Find("Hero").gameObject.transform.position = new Vector3(0, 0, 0);            
+        {
+            valoresIniciales();
+        }
+
+        private void valoresIniciales()
+        {
+            GameObject control = GameObject.Find("control");
+
+            experiencia = control.GetComponent<gamecontrol>().getExperiencia();
+            nivel = control.GetComponent<gamecontrol>().getNivel();
+            GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosicion();
+
+            // ESTO ESTA SUJETO A CAMBIO.
+            exp_proximo_nivel = nivel * 10;
+
+            Debug.Log("DATOS DEL PERSONAJE:");
+            Debug.Log("Nivel: " + nivel);
+            Debug.Log("Experiencia: " + experiencia);
         }
 
         public void setClase(string c)

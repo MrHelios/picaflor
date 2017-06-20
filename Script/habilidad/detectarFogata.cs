@@ -15,9 +15,14 @@ namespace test010
 
         public override void efecto()
         {
-            Debug.Log("Se guardo la nueva posicion.");
-            Vector3 v = fogata.gameObject.GetComponent<fogata>().darPosicion();
-            gameObject.GetComponent<atribPrincipalesPlayer>().setPosicionMuerte(v);
+            atribPrincipalesPlayer h = gameObject.GetComponent<atribPrincipalesPlayer>();
+            gamecontrol control = GameObject.Find("control").GetComponent<gamecontrol>();
+
+            control.setNivel(h.queNivel());
+            control.setExperiencia(h.getExperiencia());
+            control.setPosicion(fogata.transform.position);
+
+            Debug.Log("La informacion se guardo con exito!");
         }	
 	
 	    void FixedUpdate () {

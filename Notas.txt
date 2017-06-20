@@ -14,8 +14,8 @@ Futuro:
 ---------------------------------------------------
 
 FALTA:
-* implementar sistema santuario.
-* implementar sistema de nivel.
+* implementar sistema santuario. (sistema para guardar partida)
+* implementar sistema de nivel. (aplicar toda la tabla de atributos)
 * implementar sistema armas.
 
 ---------------------------------------------------

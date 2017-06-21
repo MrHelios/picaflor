@@ -5,10 +5,14 @@ using UnityEngine;
 namespace test010
 {
     public class Zoom : MonoBehaviour {
+
+        public int valor;
 	
-	    void Start () {
-            Camera.main.orthographicSize = 7;
-	    }
-	
+	    void Start ()
+        {
+            valor = 7;
+            Camera.main.orthographicSize = valor;
+	    }        
+
     }
 }

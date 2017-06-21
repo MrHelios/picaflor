@@ -24,7 +24,7 @@ namespace test010
         }
 
         public void abrir_hab()
-        {            
+        {
             go.SetActive(true);
             go.GetComponent<armarLibroUI>().setAtajo(gameObject);
             go.GetComponent<armarLibroUI>().armarLibro();

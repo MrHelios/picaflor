@@ -31,10 +31,16 @@ namespace test010
             boton.onClick.AddListener(() => cerrar_hab());
         }
 
-        private void cerrar_hab()
+        public void cerrar_hab()
         {
             removerHabilidades();
             go.SetActive(false);
+
+            if (GameObject.Find("Hero").transform.GetChild(0).GetComponent<habilidad>() != null)
+            {
+                habilidad h = GameObject.Find("Hero").transform.GetChild(0).GetComponent<habilidad>();
+                h.enabled = true;                
+            }
         }
 
         private void removerHabilidades()

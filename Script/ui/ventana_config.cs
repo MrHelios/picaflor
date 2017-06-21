@@ -9,7 +9,7 @@ namespace test010
 	
 	    void Start () {
             int pos_vent = 6;
-            GameObject go = GameObject.Find("Canvas").transform.GetChild(pos_vent).gameObject;
+            GameObject go = GameObject.Find("Canvas").transform.GetChild(pos_vent).gameObject;            
 
             setVentana(go);
             abrir_ventana();

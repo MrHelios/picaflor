@@ -74,14 +74,15 @@ namespace test010
             GameObject SC = GameObject.Find("SistemaClases");
             GameObject tu = SC.transform.GetChild(0).gameObject;
 
-            for (int i = 0; i < datos.Length; i++)
-            {
-                GameObject hab = GameObject.Find(datos[i]);
-                GameObject nuevo = Instantiate(hab);
+            if(tu.transform.childCount == 0)
+                for (int i = 0; i < datos.Length; i++)
+                {
+                    GameObject hab = GameObject.Find(datos[i]);
+                    GameObject nuevo = Instantiate(hab);
 
-                nuevo.transform.parent = tu.transform;
-                nuevo.name = hab.name;
-            }
+                    nuevo.transform.parent = tu.transform;
+                    nuevo.name = hab.name;
+                }
         }
     }
 }

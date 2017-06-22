@@ -8,9 +8,20 @@ namespace test010
 
         public static GameObject control;
 
-        public float experiencia;
-        public int nivel;
+        protected int fuerza;
+        protected int fortaleza;
+        protected int agilidad;
+        protected int fe;
+        protected int inteligencia;
+        protected int suerte;
+
+        protected int puntos_no_gastados;
+
+        protected float experiencia;
+        protected int nivel;
+
         private Vector3 posicion;
+
         private int escena;
 	
 	    void Awake () {            
@@ -33,7 +44,85 @@ namespace test010
             experiencia = 0;
             nivel = 1;
             posicion = new Vector3(0, 0, 0);
+
+            fuerza = 3;
+            fortaleza = 3;
+            agilidad = 3;
+            fe = 3;
+            inteligencia = 3;
+            suerte = 3;
+
             escena = 2;
+        }
+
+        public void setFuerza(int f)
+        {
+            fuerza = f;
+        }
+
+        public int getFuerza()
+        {
+            return fuerza;
+        }
+
+        public void setFortaleza(int f)
+        {
+            fortaleza = f;
+        }
+
+        public int getFortaleza()
+        {
+            return fortaleza;
+        }
+
+        public void setAgilidad(int a)
+        {
+            agilidad = a;
+        }
+
+        public int getAgilidad()
+        {
+            return agilidad;
+        }
+
+        public void setFe(int f)
+        {
+            fe = f;
+        }
+
+        public int getFe()
+        {
+            return fe;
+        }
+
+        public void setInteligencia(int i)
+        {
+            inteligencia = i;
+        }
+
+        public int getInteligencia()
+        {
+            return inteligencia;
+        }
+
+        public void setSuerte(int s)
+        {
+            suerte = s;
+        }
+
+        public int getSuerte()
+        {
+            return suerte;
+        }
+
+        public void setPuntosNoGastados(int p)
+        {
+            puntos_no_gastados = p;
+        }
+
+        public int getPuntosNoGastados()
+        {
+            return puntos_no_gastados;
         }
 
         public void setExperiencia(float e)

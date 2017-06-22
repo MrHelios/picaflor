@@ -16,11 +16,13 @@ namespace test010
 
         void Awake()
         {
+            valoresIniciales();
+
             // Valores por defecto.
             gameObject.transform.position = pos_caso_de_muerte;
 
-            vida = vida_max = 30;
-            mana = mana_max = 30;
+            vida = vida_max = calculoVida();
+            mana = mana_max = calculoMana();
             aguante = aguante_max = 30;            
 
             clase = "Mago";
@@ -28,7 +30,7 @@ namespace test010
 
         void Start()
         {
-            valoresIniciales();
+            
         }
 
         private void valoresIniciales()
@@ -42,9 +44,23 @@ namespace test010
             // ESTO ESTA SUJETO A CAMBIO.
             exp_proximo_nivel = nivel * 10;
 
-            Debug.Log("DATOS DEL PERSONAJE:");
-            Debug.Log("Nivel: " + nivel);
-            Debug.Log("Experiencia: " + experiencia);
+            fuerza = control.GetComponent<gamecontrol>().getFuerza();
+            fortaleza = control.GetComponent<gamecontrol>().getFortaleza();
+            agilidad = control.GetComponent<gamecontrol>().getAgilidad();
+            fe = control.GetComponent<gamecontrol>().getFe();
+            inteligencia = control.GetComponent<gamecontrol>().getInteligencia();
+            suerte = control.GetComponent<gamecontrol>().getSuerte();
+            puntos_no_gastados = control.GetComponent<gamecontrol>().getPuntosNoGastados();
+        }
+
+        private float calculoVida()
+        {
+            return fortaleza * 10;
+        }
+
+        private float calculoMana()
+        {
+            return fe * 10;
         }
 
         public void setClase(string c)
@@ -79,7 +95,8 @@ namespace test010
         
         private void nivelNuevo()
         {
-            experiencia = experiencia - exp_proximo_nivel;            
+            puntos_no_gastados += 3;
+            experiencia = experiencia - exp_proximo_nivel;
             nivel++;
             
             // ESTA ES LA FUNCION PARA SUBIR DE NIVEL.

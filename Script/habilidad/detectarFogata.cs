@@ -6,12 +6,15 @@ namespace test010
 {
     public class detectarFogata : habilidad {
 
+        private GameObject vent_santuario;
         private Collider2D fogata;
 
         void Start () {
             tecla = KeyCode.E;
             icono_hab = null;
-	    }
+
+            vent_santuario = GameObject.Find("Canvas").transform.GetChild(7).gameObject;
+        }
 
         public override void efecto()
         {
@@ -21,8 +24,15 @@ namespace test010
             control.setNivel(h.queNivel());
             control.setExperiencia(h.getExperiencia());
             control.setPosicion(fogata.transform.position);
-
-            Debug.Log("La informacion se guardo con exito!");
+            control.setFuerza(h.getFuerza());
+            control.setFortaleza(h.getFortaleza());
+            control.setAgilidad(h.getAgilidad());
+            control.setFe(h.getFe());
+            control.setInteligencia(h.getInteligencia());
+            control.setSuerte(h.getSuerte());
+            control.setPuntosNoGastados(h.getPuntosNoGastados());
+            
+            vent_santuario.SetActive(true);
         }	
 	
 	    void FixedUpdate () {

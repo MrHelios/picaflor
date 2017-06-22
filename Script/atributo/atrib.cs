@@ -5,6 +5,18 @@ namespace test010
 {
     public abstract class atrib : MonoBehaviour
     {
+        // ATRIBUTOS BASICOS
+
+        protected int fuerza;
+        protected int fortaleza;
+        protected int agilidad;
+        protected int fe;
+        protected int inteligencia;
+        protected int suerte;
+
+        protected int puntos_no_gastados;
+
+        // ATRIBUTOS COMPUESTO
 
         protected float vida;
         protected float vida_max;
@@ -15,9 +27,81 @@ namespace test010
         protected float aguante;
         protected float aguante_max;
 
+        protected float velocidad;
+
         protected int nivel;
 
-        protected float velocidad;
+        // METEDOS ATRIBUTOS BASICOS
+
+        public void setFuerza(int f)
+        {
+            fuerza = f;
+        }
+
+        public int getFuerza()
+        {
+            return fuerza;
+        }
+
+        public void setFortaleza(int f)
+        {
+            fortaleza = f;
+        }
+
+        public int getFortaleza()
+        {
+            return fortaleza;
+        }
+
+        public void setAgilidad(int a)
+        {
+            agilidad = a;
+        }
+
+        public int getAgilidad()
+        {
+            return agilidad;
+        }
+
+        public void setFe(int f)
+        {
+            fe = f;
+        }
+
+        public int getFe()
+        {
+            return fe;
+        }
+
+        public void setInteligencia(int i)
+        {
+            inteligencia = i;
+        }
+
+        public int getInteligencia()
+        {
+            return inteligencia;
+        }
+
+        public void setSuerte(int s)
+        {
+            suerte = s;
+        }
+
+        public int getSuerte()
+        {
+            return suerte;
+        }
+
+        public void setPuntosNoGastados(int p)
+        {
+            puntos_no_gastados = p;
+        }
+
+        public int getPuntosNoGastados()
+        {
+            return puntos_no_gastados;
+        }
 
         // NIVEL
 

@@ -36,6 +36,12 @@ namespace test010
         protected void cerrar()
         {
             ventana.SetActive(false);
+
+            if (GameObject.Find("Hero").transform.GetChild(0).GetComponent<habilidad>() != null)
+            {
+                habilidad h = GameObject.Find("Hero").transform.GetChild(0).GetComponent<habilidad>();
+                h.enabled = true;
+            }
         }
 
     }

@@ -10,8 +10,6 @@ namespace test010
         
         public void OnPointerEnter(PointerEventData eventData)
         {
-            Debug.Log("Entra");
-
             GameObject hab = GameObject.Find("Hero").transform.GetChild(0).gameObject;
             if(hab.GetComponent<habilidad>() != null)
                 hab.GetComponent<habilidad>().enabled = false;
@@ -19,8 +17,6 @@ namespace test010
         
         public void OnPointerExit(PointerEventData eventData)
         {
-            Debug.Log("Sale");
-
             GameObject hab = GameObject.Find("Hero").transform.GetChild(0).gameObject;
             if (hab.GetComponent<habilidad>() != null)
                 hab.GetComponent<habilidad>().enabled = true;

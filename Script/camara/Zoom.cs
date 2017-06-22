@@ -6,7 +6,7 @@ namespace test010
 {
     public class Zoom : MonoBehaviour {
 
-        public int valor;
+        private int valor;
 	
 	    void Start ()
         {

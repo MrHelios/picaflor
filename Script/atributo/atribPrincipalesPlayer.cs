@@ -10,7 +10,7 @@ namespace test010
     public class atribPrincipalesPlayer : atrib {
 
         private float experiencia;    
-        private int exp_proximo_nivel;
+        private float exp_proximo_nivel;
         private Vector3 pos_caso_de_muerte;
         public string clase;
 
@@ -70,6 +70,11 @@ namespace test010
         public float getExperiencia()
         {
             return experiencia;
+        }
+
+        public float getExperienciaMax()
+        {
+            return exp_proximo_nivel;
         }
         
         private void nivelNuevo()

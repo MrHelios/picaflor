@@ -2,67 +2,75 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using test010;
+namespace test010
+{
+    public class testInicioSistemaArmas : MonoBehaviour {
 
-public class testInicioSistemaArmas : MonoBehaviour {
-
+        private GameObject sistema_arma;
 	
-	void Start () {
-        GameObject sistema_arma = GameObject.Find("SistemaArmas");
-
-        testCantidadClases(sistema_arma);
-        testMagoArmas(sistema_arma);
-        testGuerreroArmas(sistema_arma);		
-	}
-
-    private void testCantidadClases(GameObject SA)
-    {
-        if (SA.transform.childCount != 2)
+	    void Start ()
         {
-            Debug.Log("La cantidad de clases para usar Armas es incorrecta: " + SA.transform.childCount);
-            IntegrationTest.Fail();
+            sistema_arma = GameObject.Find("SistemaArmas");
+
+            testCantidadClases(sistema_arma);
+            testTu();
+            testTodasArmas();
+
+            IntegrationTest.Pass();
         }
-    }
 
-    private void testMagoArmas(GameObject SA)
-    {
-
-        for (int i = 0; i < SA.transform.GetChild(0).transform.childCount; i++)
+        private void testCantidadClases(GameObject SA)
         {
-            GameObject hijo = SA.transform.GetChild(0).transform.GetChild(i).gameObject;
-
-            if (hijo.GetComponent<SpriteRenderer>() == null)
+            int cant = 2;
+            if (SA.transform.childCount != cant)
             {
-                Debug.Log("El GO del mago" + hijo + " no tiene la imagen del arma.");
-                IntegrationTest.Fail();
-            }
-
-            if (hijo.GetComponent<atribArma>() == null)
-            {
-                Debug.Log("El GO del mago " + hijo + " no tiene atributo del arma.");
+                Debug.Log(SA);
+                Debug.Log("La cantidad de obejtos no es correcto.");
+                Debug.Log("Se esperaba: "  + cant + " -> " + SA.transform.childCount);
                 IntegrationTest.Fail();
             }
         }
-    }
 
-    private void testGuerreroArmas(GameObject SA)
-    {
-        for (int i = 0; i < SA.transform.GetChild(1).transform.childCount; i++)
+        private void testTu()
         {
-            GameObject hijo = SA.transform.GetChild(1).transform.GetChild(i).gameObject;
-
-            if (hijo.GetComponent<SpriteRenderer>() == null)
+            GameObject tu = sistema_arma.transform.GetChild(0).gameObject;
+            if (tu.name != "tusArmas")
             {
-                Debug.Log("El GO del guerrero " + hijo + " no tiene la imagen del arma.");
+                Debug.Log(tu);
+                Debug.Log("No estan las armas del jugador.");
                 IntegrationTest.Fail();
             }
 
-            if (hijo.GetComponent<atribArma>() == null)
+            int cant = 0;
+            if (tu.transform.childCount != cant)
             {
-                Debug.Log("El GO del guerrero " + hijo + " no tiene atributo del arma.");
+                Debug.Log(tu);
+                Debug.Log("La cantidad de obejtos no es correcto.");
+                Debug.Log("Se esperaba: " + cant + " -> " + tu.transform.childCount);
+                IntegrationTest.Fail();
+            }            
+        }
+
+        private void testTodasArmas()
+        {
+            GameObject armas = sistema_arma.transform.GetChild(1).gameObject;
+            if (armas.name != "todasLasArmas")
+            {
+                Debug.Log(armas);
+                Debug.Log("No estan todas las armas del juego.");
+                IntegrationTest.Fail();
+            }
+
+            int cant = 3;
+            if (armas.transform.childCount != cant)
+            {
+                Debug.Log(cant);
+                Debug.Log("La cantidad de obejtos no es correcto.");
+                Debug.Log("Se esperaba: " + cant + " -> " + armas.transform.childCount);
                 IntegrationTest.Fail();
             }
         }
+        
     }
-	
 }
+

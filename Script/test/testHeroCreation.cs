@@ -206,9 +206,12 @@ public class testHeroCreation : MonoBehaviour {
      */
     private void cantHijosCorrecta(GameObject hero)
     {
-        if (hero.transform.childCount != 11)
+        int cant = 12;
+        if (hero.transform.childCount != cant)
         {
+            Debug.Log(hero);
             Debug.Log("La cantidad de hijos requerida para Player es incorrecta.");
+            Debug.Log("Se esperaba: " + cant + " -> " + hero.transform.childCount);
             IntegrationTest.Fail();
         }
     }
@@ -403,24 +406,36 @@ public class testHeroCreation : MonoBehaviour {
         }
     }
 
-    private void comprobarArmaHero(GameObject hero)
+    private void comprobarArmaImagen(GameObject hero)
     {
         GameObject arma = hero.transform.GetChild(10).gameObject;
-        bool hay_imagen, que_imagen = false;
 
-        hay_imagen = arma.GetComponent<SpriteRenderer>() != null;
-        if (hay_imagen)
-            que_imagen = arma.GetComponent<SpriteRenderer>().sprite.name == "baston01";
-
-        if (!hay_imagen || !que_imagen)
+        int cant = 2;
+        if (arma.transform.childCount != cant)
         {
-            Debug.Log("La imagen del arma no es valida.");
-            Debug.Log("Hay Imagen: " + hay_imagen);
-            Debug.Log("Que Imagen: " + que_imagen);
             IntegrationTest.Fail();
+            Debug.Log("La cantidad de objetos no es correcta.");
+            Debug.Log("Se espera: " + cant + " -> " + arma.transform.childCount);
+        }
+        else
+        {
+            string nombre_0 = "activo";
+            string nombre_1 = "envainado";
+            if (arma.transform.GetChild(0).gameObject.name != nombre_0 && arma.transform.GetChild(1).gameObject.name != nombre_1)
+            {
+                IntegrationTest.Fail();
+                Debug.Log("los nombres de los objetos no son correctos.");
+                Debug.Log("Se espera: " + nombre_0 + " -> " + arma.transform.GetChild(0).gameObject.name);
+                Debug.Log("Se espera: " + nombre_1 + " -> " + arma.transform.GetChild(1).gameObject.name);
+            }
         }
 
-        bool hay_arma;
+    }
+
+    private void comprobarArmaHero(GameObject hero)
+    {
+        GameObject arma = hero.transform.GetChild(11).gameObject;
+        bool hay_arma;        
 
         hay_arma = arma.GetComponent<atribArma>() != null;
         if (!hay_arma)

@@ -180,10 +180,19 @@ public class testHeroCreation : MonoBehaviour {
         }
     }
 
+    private void estaSprint()
+    {
+        if (hero.GetComponent<cambiaVelocidadPlayer>() == null)
+        {
+            Debug.Log("La habilidad para cambiar la velocidad player no esta implementada.");
+            IntegrationTest.Fail();
+        }
+    }
+
     private void cantidadDeComponentes(GameObject hero)
     {
         int cant = hero.GetComponents<MonoBehaviour>().Length;
-        int cantidad_comp = 10;
+        int cantidad_comp = 11;
         if (cant != cantidad_comp)
         {
             Debug.Log("La cantidad de components principales es distinta a la requerida.");
@@ -233,6 +242,7 @@ public class testHeroCreation : MonoBehaviour {
         if (imagen.GetComponent<SpriteRenderer>().enabled)
         {
             IntegrationTest.Fail();
+            Debug.Log(imagen.name);
             Debug.Log("La imagen esta habilitada en la pantalla de carga.");
         }
 

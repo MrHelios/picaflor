@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace test010
 {
 
-    public class testInicioUI : MonoBehaviour {
-	
+    public class testInicioUI : MonoBehaviour
+    {	
 	    void Start () {
             estaCanvas();
-            cantidadCorrectaElementos(GameObject.Find("Canvas"), 7,
+            cantidadCorrectaElementos(GameObject.Find("Canvas"), 8,
                "La cantidad de elementos requeridas en el canvas no es correcta.");
             estaUIVida();
             estaUIMana();
@@ -235,28 +234,32 @@ namespace test010
         private void ventana_personaje()
         {
             GameObject canvas = GameObject.Find("Canvas");
-            GameObject ui = canvas.transform.GetChild(4).gameObject;
+            GameObject ui = canvas.transform.GetChild(4).gameObject.transform.GetChild(0).gameObject;
 
             if (ui.GetComponent<Image>() == null)
             {
                 IntegrationTest.Fail();
+                Debug.Log(ui);
                 Debug.Log("La imagen para la ventana de personaje no es correcta.");
             }
 
-            cantidadCorrectaElementos(ui, 1, "La cantidad de botones en la ventana habilidades no es correcta.");
+            ui = canvas.transform.GetChild(4).gameObject;
+            cantidadCorrectaElementos(ui, 24, "La cantidad de botones en la ventana habilidades no es correcta.");
         }
 
         private void ventana_habilidades()
         {
             GameObject canvas = GameObject.Find("Canvas");
-            GameObject ui = canvas.transform.GetChild(5).gameObject;
+            GameObject ui = canvas.transform.GetChild(5).gameObject.transform.GetChild(0).gameObject;
 
-            if (ui.GetComponent<Image>() == null)
+            if (ui.name != "fondo" && ui.GetComponent<Image>() == null)
             {
                 IntegrationTest.Fail();
+                Debug.Log(ui);
                 Debug.Log("La imagen para la ventana de habilidades no es correcta.");
             }
 
+            ui = canvas.transform.GetChild(5).gameObject;
             cantidadCorrectaElementos(ui, 9, "La cantidad de botones en la ventana habilidades no es correcta.");
 
             for (int i = 0; i < 8; i++)
@@ -271,14 +274,15 @@ namespace test010
         private void ventana_config()
         {
             GameObject canvas = GameObject.Find("Canvas");
-            GameObject ui = canvas.transform.GetChild(6).gameObject;
+            GameObject ui = canvas.transform.GetChild(6).gameObject.transform.GetChild(0).gameObject;
 
-            if (ui.GetComponent<Image>() == null)
+            if (ui.name != "fondo" && ui.GetComponent<Image>() == null)
             {
                 IntegrationTest.Fail();
                 Debug.Log("La imagen para la ventana de habilidades no es correcta.");
-            }        
+            }
 
+            ui = canvas.transform.GetChild(6).gameObject;
             cantidadCorrectaElementos(ui, 3, "La cantidad de botones en la ventana configuracion no es correcta.");
 
             string[] datos = { "boton_reanudar", "boton_opciones", "boton_salir" };
@@ -304,4 +308,5 @@ namespace test010
         }
 
     }
+
 }

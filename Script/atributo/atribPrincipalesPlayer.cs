@@ -16,14 +16,13 @@ namespace test010
 
         void Awake()
         {
-            valoresIniciales();
-
             // Valores por defecto.
             gameObject.transform.position = pos_caso_de_muerte;
 
+            valoresIniciales();
             vida = vida_max = calculoVida();
             mana = mana_max = calculoMana();
-            aguante = aguante_max = 30;            
+            aguante = aguante_max = 30;
 
             clase = "Mago";
         }
@@ -154,7 +153,7 @@ namespace test010
             if (aguante >= a)
             {
                 aguante -= a;
-                gameObject.GetComponent<uiPlayerMana>().modificar(aguante / aguante_max);
+                gameObject.GetComponent<uiPlayerAguante>().modificar(aguante / aguante_max);
             }
         }
 

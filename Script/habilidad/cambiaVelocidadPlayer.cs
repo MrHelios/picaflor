@@ -7,6 +7,7 @@ namespace test010
 {
     public class cambiaVelocidadPlayer : habilidadConTiempo {
 
+        protected GameObject hero;
         protected GameObject objetivo;
         protected float velocidad;
         protected float velocidadNueva;    
@@ -14,14 +15,17 @@ namespace test010
 
         void Awake()
         {
-            nivel_necesario = 2;
+            nivel_necesario = 1;
+
+            mana = 0;
+            aguante = 5;
         }
 
         void Start ()
         {
-            queTecla();
-            activo = false;
-    
+            hero = GameObject.Find("Hero");
+            tecla = KeyCode.LeftShift;
+            activo = false;    
 
             cooldown = 2f;
             ultimoUso = Time.time - cooldown;
@@ -31,6 +35,7 @@ namespace test010
         {
             objetivo = GameObject.Find("Hero");
 
+            hero.GetComponent<atrib>().perderAguante(aguante);
             velocidad = objetivo.GetComponent<atribPrincipalesPlayer>().getVelocidad();
             velocidadNueva = velocidad * 1.5f;
 
@@ -51,7 +56,7 @@ namespace test010
         {
             if (activo && Time.time >= tiempoCorte)
                 corte();
-            else if (Time.time >= ultimoUso && !activo && Input.GetKeyDown(tecla))
+            else if (Time.time >= ultimoUso && !activo && Input.GetKeyDown(tecla) && hero.GetComponent<atrib>().tieneAguante(aguante))
             {            
                 efecto();
                 efectoCooldown();

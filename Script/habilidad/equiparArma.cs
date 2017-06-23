@@ -41,9 +41,7 @@ namespace test010
             arma_imagen.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = arma_b.gameObject.GetComponent<SpriteRenderer>().sprite;
             // espada
             arma_imagen.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = arma_h.gameObject.GetComponent<SpriteRenderer>().sprite;
-
-            // envainada
-            arma_imagen.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = arma_h.gameObject.GetComponent<SpriteRenderer>().sprite;
+            arma_imagen.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().enabled = false;            
         }
 
     }

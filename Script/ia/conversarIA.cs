@@ -13,13 +13,14 @@ namespace test010
         protected GameObject canvas;
         protected GameObject ui_conversar;
 
-	    void Awake () {
+	    void buscar() {
             canvas = GameObject.Find("Canvas");
             ui_conversar = canvas.transform.GetChild(8).gameObject;
 	    }
 
         public void activar()
         {
+            buscar();
             for (int i = 0; i < canvas.transform.childCount; i++)
             {
                 GameObject hijo = canvas.transform.GetChild(i).gameObject;

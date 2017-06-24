@@ -7,15 +7,23 @@ namespace test010
     public class uiPlayerExp : MonoBehaviour {
 
         private GameObject canvas;
-        private int hijo_ui;    
+        private int hijo_ui;
 
-        void Start() {        
-            canvas = GameObject.Find("Canvas").gameObject;        
-            hijo_ui = 1;
+        private float exp_max;
+
+        void Start() {
+            canvas = GameObject.Find("Canvas").gameObject;
+            hijo_ui = 9;
+
+            exp_max = canvas.transform.GetChild(hijo_ui).gameObject.transform.localScale.x;
         }
 
-        public void modificar(float v) {        
-            canvas.transform.GetChild(hijo_ui).transform.localScale = new Vector3(v, canvas.transform.GetChild(hijo_ui).transform.localScale.y, canvas.transform.GetChild(hijo_ui).transform.localScale.z);
+        public void modificar(float v)
+        {
+            GameObject ui_exp = canvas.transform.GetChild(hijo_ui).gameObject;
+
+            Vector3 nueva_vida = new Vector3(v * exp_max, ui_exp.transform.localScale.y, ui_exp.transform.localScale.z);
+            ui_exp.transform.localScale = nueva_vida;
         }
 
     }

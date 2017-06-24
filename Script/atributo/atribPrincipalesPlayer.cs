@@ -29,7 +29,8 @@ namespace test010
 
         void Start()
         {
-            
+            // Configurar la ui del exp.
+            sumarExp(0);
         }
 
         private void valoresIniciales()
@@ -76,10 +77,12 @@ namespace test010
 
         public void sumarExp(float f)
         {
-            experiencia += f;
+            experiencia += f;            
 
             if (experiencia >= exp_proximo_nivel)
                 nivelNuevo();
+
+            gameObject.GetComponent<uiPlayerExp>().modificar(experiencia / exp_proximo_nivel);
         }
 
         public float getExperiencia()

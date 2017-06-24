@@ -26,6 +26,8 @@ namespace test010
             transform.GetChild(0).gameObject.transform.position = new Vector3(40, hy - 50, 0);
             transform.GetChild(1).gameObject.transform.position = new Vector3(40, hy - 72, 0);
             transform.GetChild(2).gameObject.transform.position = new Vector3(40, hy - 94, 0);
+
+            transform.GetChild(9).gameObject.transform.position = new Vector3(wx * 0.5f - 190, hy * 0.05f + 20, 0);
             transform.GetChild(3).gameObject.transform.position = new Vector3(wx * 0.5f, hy * 0.05f, 0);
 
             transform.GetChild(8).gameObject.transform.position = new Vector3(wx * 0.25f, hy * 0.5f, 0);

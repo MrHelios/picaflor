@@ -19,6 +19,10 @@ namespace test010
         }
 
         public void modificar(float v) {
+
+            if (v < 0)
+                v = 0;
+
             GameObject ui_vida = canvas.transform.GetChild(hijo_ui).gameObject;
 
             Vector3 nueva_vida = new Vector3(v * vida_max, ui_vida.transform.localScale.y, ui_vida.transform.localScale.z);

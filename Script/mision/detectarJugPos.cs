@@ -8,6 +8,8 @@ namespace test010
 
         public string nombre_mision;
         public LayerMask heroe;
+        public int escena;
+
         private float radio;
 
 	    void Start () {

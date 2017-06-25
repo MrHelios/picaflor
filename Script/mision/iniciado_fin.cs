@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class iniciado_fin : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+namespace test010
+{
+    public class iniciado_fin : MonoBehaviour
+    {
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	    void Start ()
+        {
+            if (SceneManager.GetActiveScene().buildIndex == GetComponent<detectarJugPos>().escena)
+                GetComponent<detectarJugPos>().enabled = true;
+        }	
+	
+    }
 }

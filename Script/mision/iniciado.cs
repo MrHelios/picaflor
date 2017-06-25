@@ -32,6 +32,7 @@ namespace test010
             {
                 GameObject.Find("Hero").GetComponent<diario>().agregar(this);
                 agregado = true;
+                animacionTextoMision("Iniciaste: ");
             }
         }
 
@@ -53,7 +54,7 @@ namespace test010
         {
             if (agregado && terminado_no_entregado && !completado)
             {
-                completado = true;
+                completado = true;                
                 return true;
             }
             else

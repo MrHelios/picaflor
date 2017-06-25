@@ -4,19 +4,12 @@ using UnityEngine;
 
 namespace test010
 {
-    public class loadDungeon : MonoBehaviour {
+    public class loadDungeon : MonoBehaviour {        
 
-        public string nombreGO;	    
-
-        public string getNombre()
-        {
-            return nombreGO;
-        }
-
-        protected void load_d()
+        protected void load_d(string n)
         {
             GameObject dung = GameObject.Find("Dungeon");
-            GameObject load_go = GameObject.Find(nombreGO);
+            GameObject load_go = GameObject.Find(n);
 
             for (int i = 0; i < load_go.transform.childCount; i++)
             {
@@ -46,6 +39,31 @@ namespace test010
                     nuevo.GetComponent<Collider2D>().enabled = true;
                 }
             }
+
+            Destroy(load_go);
+        }
+
+        protected void load_npc(string n)
+        {
+            GameObject npc = GameObject.Find("NPC");
+            GameObject load_npc = GameObject.Find(n);
+
+            for (int i = 0; i < load_npc.transform.childCount; i++)
+            {
+                GameObject obj = load_npc.transform.GetChild(i).gameObject;
+                GameObject nuevo = Instantiate(obj);
+                nuevo.transform.parent = npc.transform;
+                nuevo.name = obj.name;
+
+                if(nuevo.GetComponent<mision>() != null)
+                    nuevo.GetComponent<mision>().enabled = true;
+
+                nuevo.GetComponent<Collider2D>().enabled = true;
+                for (int j = 0; j < nuevo.transform.childCount; j++)
+                    nuevo.transform.GetChild(j).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+
+            Destroy(load_npc);
         }
 
         protected void load_script_imagen_h()

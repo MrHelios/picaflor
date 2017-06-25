@@ -27,12 +27,14 @@ namespace test010
                 Debug.Log("No existe Dungeon");
             }
 
-            GameObject load = GameObject.Find(dC.GetComponent<loadDungeon>().getNombre());
+            
+            GameObject load = GameObject.Find(dC.GetComponent<loadDungeonNaturaleza>().getNombre());
             if (load == null)
             {
                 IntegrationTest.Fail();
                 Debug.Log("No existe load");
             }
+            
 
             if (load.transform.childCount == dung.transform.childCount)
             {

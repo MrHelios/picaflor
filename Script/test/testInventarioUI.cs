@@ -10,12 +10,19 @@ namespace test010
 
         private GameObject hero;
 
-	    void Start ()
+        void Awake()
         {
-            hero = new GameObject("Hero");
-            hero.AddComponent<inventario>();
-            new GameObject().transform.parent = hero.transform;
+            hero = GameObject.Find("Hero");
+            hero.AddComponent<inventario>().iniciar();
 
+            GameObject inv = new GameObject("Inventario");
+            GameObject mon = new GameObject("moneda");
+            mon.transform.parent = inv.transform;
+            mon.AddComponent<oro>().iniciar();
+        }
+
+        void Start ()
+        {
             GameObject enem = new GameObject("enem");
             enem.AddComponent<atribPrincipales>();
             enem.GetComponent<atribPrincipales>().iniciar();
@@ -25,9 +32,7 @@ namespace test010
             n.AddComponent<armadura_templario_0>().iniciar();             
             hero.GetComponent<inventario>().agregar(n.GetComponent<item>());
 
-            testCantidad();
-
-            armarUI();
+            testCantidad();            
             testVentana();            
 
             IntegrationTest.Pass();
@@ -44,46 +49,13 @@ namespace test010
             }
 
             inventario inv = hero.GetComponent<inventario>();            
-        }
-
-        public void armarUI()
-        {
-            GameObject canvas = GameObject.Find("Canvas");
-
-            GameObject vent = canvas.transform.GetChild(0).gameObject;
-            Button boton = canvas.transform.GetChild(1).gameObject.GetComponent<Button>();
-            
-            boton.onClick.AddListener(() => armarVentana(vent));
-        }
-
-        public void armarVentana(GameObject vent)
-        {
-            vent.SetActive(true);
-
-            GameObject boton = vent.transform.GetChild(2).gameObject;
-            inventario inv = hero.GetComponent<inventario>();
-            item[] it = hero.GetComponents<item>();
-
-            for (int i = 0; i < inv.cantidad(); i++)
-            {
-                GameObject nuevo = Instantiate(boton);
-                nuevo.transform.parent = vent.transform;
-                nuevo.transform.position = new Vector2(boton.transform.position.x + i*51, boton.transform.position.y ) ;
-                nuevo.SetActive(true);
-                nuevo.transform.GetChild(0).gameObject.GetComponent<Text>().text = it[i].getCantidad() + "";
-            }
-
-            GameObject b = vent.transform.GetChild(1).gameObject;
-            b.SetActive(true);
-            b.AddComponent<adminVentanas>();
-            b.GetComponent<adminVentanas>().setVentana(vent);
-            b.GetComponent<adminVentanas>().cerrar_ventana_i();
-        }
+        }        
 
         public IEnumerator testVentana()
-        {
-            GameObject.Find("Canvas").transform.GetChild(1).gameObject.GetComponent<Button>().onClick.Invoke();
-            GameObject vent = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        {            
+            GameObject.Find("Canvas/ui_panel_atajos/boton_inventario").gameObject.GetComponent<Button>().onClick.Invoke();
+            GameObject vent = GameObject.Find("Canvas/ui_ventana_inventario");
+
             inventario inv = hero.GetComponent<inventario>();
 
             if (!vent.gameObject.activeSelf)
@@ -119,7 +91,7 @@ namespace test010
                 Debug.Log("La ventana esta abierta incluso despues de cerrarla.");
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
 
             if (vent.transform.childCount != 2)
             {

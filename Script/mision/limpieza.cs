@@ -30,7 +30,7 @@ namespace test010
 
             GameObject enem = Instantiate(GameObject.Find("control/SistemaEnemigos/tempestad_oscura"));
             enem.transform.parent = eventos.transform;
-            enem.transform.position = new Vector2(-10, -20);
+            enem.transform.position = new Vector2(104, -104);
 
             enem.AddComponent<marca>();
             enem.GetComponent<marca>().escena = 2;

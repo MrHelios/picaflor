@@ -32,7 +32,7 @@ namespace test010
 
             GameObject evento_iniciado = new GameObject("evento_iniciado");
             evento_iniciado.transform.parent = eventos.transform;
-            evento_iniciado.transform.position = new Vector2(40,30);
+            evento_iniciado.transform.position = new Vector2(141,-55);
             evento_iniciado.AddComponent<detectarJugPos>();
 
             evento_iniciado.GetComponent<detectarJugPos>().nombre_mision = nombre;

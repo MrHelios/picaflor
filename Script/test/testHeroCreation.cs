@@ -192,7 +192,7 @@ public class testHeroCreation : MonoBehaviour {
     private void cantidadDeComponentes(GameObject hero)
     {
         int cant = hero.GetComponents<MonoBehaviour>().Length;
-        int cantidad_comp = 11;
+        int cantidad_comp = 14;
         if (cant != cantidad_comp)
         {
             Debug.Log("La cantidad de components principales es distinta a la requerida.");

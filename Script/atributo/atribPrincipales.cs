@@ -48,7 +48,7 @@ namespace test010
         public void muerte()
         {
             sumarExp(GameObject.Find("Hero"));
-            queDrop(GameObject.Find("Hero"));
+            queDrop(GameObject.Find("control/HeroInventario"));
 
             if (GetComponent<marca>() != null)
                 GetComponent<marca>().misionTerminada();

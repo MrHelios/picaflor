@@ -10,7 +10,7 @@ namespace test010
     {	
 	    void Start () {
             estaCanvas();
-            cantidadCorrectaElementos(GameObject.Find("Canvas"), 8,
+            cantidadCorrectaElementos(GameObject.Find("Canvas"), 12,
                "La cantidad de elementos requeridas en el canvas no es correcta.");
             estaUIVida();
             estaUIMana();
@@ -20,7 +20,7 @@ namespace test010
             estaVentanaHabilidades();
             estaVentanaConfig();
 
-            botones_panel_atajos(3, 7);
+            botones_panel_atajos(3, 9);
             ventana_personaje();
             ventana_habilidades();
             ventana_config();
@@ -228,6 +228,43 @@ namespace test010
                 Debug.Log(hijo);
                 Debug.Log("El GO no tiene la componente para activar la ventana de config");
             }
+
+            // DIARIO
+            hijo = ui.transform.GetChild(7).gameObject;
+            if (hijo.name != "boton_diario")
+            {
+                IntegrationTest.Fail();
+                Debug.Log("El nombre del boton_diario no es correcto");
+                Debug.Log("Se esperaba:  boton_diairo -> " + hijo.name);
+            }
+
+            if (hijo.GetComponent<Button>() == null || !hijo.GetComponent<Button>().enabled)
+            {
+                IntegrationTest.Fail();
+                Debug.Log("El GO boton_diario no tiene boton como componente o esta desactivado.");
+            }
+
+            if (hijo.GetComponent<ventana_diario>() == null)
+            {
+                IntegrationTest.Fail();
+                Debug.Log(hijo);
+                Debug.Log("El GO no tiene la componente para activar la ventana de config");
+            }
+
+            // INVENTARIO
+            hijo = ui.transform.GetChild(8).gameObject;
+            if (hijo.name != "boton_inventario")
+            {
+                IntegrationTest.Fail();
+                Debug.Log("El nombre del boton_inventario no es correcto");
+                Debug.Log("Se esperaba:  boton_inventario -> " + hijo.name);
+            }
+
+            if (hijo.GetComponent<Button>() == null || !hijo.GetComponent<Button>().enabled)
+            {
+                IntegrationTest.Fail();
+                Debug.Log("El GO boton_inventario no tiene boton como componente o esta desactivado.");
+            }           
 
         }
 

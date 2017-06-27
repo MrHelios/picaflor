@@ -53,7 +53,7 @@ namespace test010
 
         public void cerrar_vent_int()
         {
-            ventana.SetActive(true);
+            ventana.SetActive(false);
             for (int i = 3; i < ventana.transform.childCount; i++)
             {
                 DestroyImmediate(ventana.transform.GetChild(i).gameObject);

@@ -34,7 +34,13 @@ namespace test010
                 IntegrationTest.Fail();
                 Debug.Log("No existe load");
             }
-            
+
+            GameObject inv = GameObject.Find("control/Inventario/moneda");
+            if (inv == null)
+            {
+                IntegrationTest.Fail();
+                Debug.Log("No existe el inventario moneda.");
+            }            
 
             if (load.transform.childCount == dung.transform.childCount)
             {

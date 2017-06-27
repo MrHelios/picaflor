@@ -21,7 +21,7 @@ namespace test010
             boton.onClick.AddListener(() => abrir());
         }
 
-        protected void cerrar_ventana()
+        public void cerrar_ventana()
         {
             Button boton = gameObject.GetComponent<Button>();
 
@@ -41,6 +41,22 @@ namespace test010
             {
                 habilidad h = GameObject.Find("Hero").transform.GetChild(0).GetComponent<habilidad>();
                 h.enabled = true;
+            }
+        }
+
+        public void cerrar_ventana_i()
+        {
+            Button boton = gameObject.GetComponent<Button>();
+
+            boton.onClick.AddListener(() => cerrar_vent_int());
+        }
+
+        public void cerrar_vent_int()
+        {
+            ventana.SetActive(true);
+            for (int i = 3; i < ventana.transform.childCount; i++)
+            {
+                DestroyImmediate(ventana.transform.GetChild(i).gameObject);
             }
         }
 

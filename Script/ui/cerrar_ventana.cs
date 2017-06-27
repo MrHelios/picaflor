@@ -13,13 +13,18 @@ namespace test010
         void Start()
         {
             go = gameObject.transform.parent.gameObject;
-            
+
             if (go.name == "ui_ventana_habilidades")
-            {                
+            {
                 cerrar_ventana_hab();
             }
+            else if (go.name == "ui_ventana_diario")
+            {
+                setVentana(go);
+                cerrar_ventana_diario();
+            }
             else
-            {                
+            {
                 setVentana(go);
                 cerrar_ventana();
             }
@@ -29,6 +34,20 @@ namespace test010
         {
             Button boton = gameObject.GetComponent<Button>();
             boton.onClick.AddListener(() => cerrar_hab());
+        }
+
+        private void cerrar_ventana_diario()
+        {
+            Button boton = gameObject.GetComponent<Button>();
+            boton.onClick.AddListener(() => cerrar_diario());
+        }
+
+        private void cerrar_diario()
+        {
+            for (int i=3; i<go.transform.childCount; i++)
+                Destroy(go.transform.GetChild(i).gameObject);
+
+            go.SetActive(false);
         }
 
         public void cerrar_hab()

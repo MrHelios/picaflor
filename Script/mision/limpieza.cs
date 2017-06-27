@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace test010
 {
-    public class iniciado : mision
-    {
+    public class limpieza : mision {
 
         private GameObject campaña_GO;
 
@@ -15,9 +13,9 @@ namespace test010
             posicion = 0;
             campaña = 0;
 
-            nombre = "El iniciado";
-            info_pre = "Ve al templo del Sol y contempla su belleza.";
-            info_post = "Bien hecho hermano. El astro rey iluminara siempre tu alma.";
+            nombre = "Limpieza";
+            info_pre = "Al oeste hay una criatura vil. Eliminala!";
+            info_post = "Bien hecho hermano. El aire hoy es mas puro.";
 
             agregado = false;
             terminado_no_entregado = false;
@@ -30,17 +28,14 @@ namespace test010
         {
             GameObject eventos = GameObject.Find("eventos_misiones");
 
-            GameObject evento_iniciado = new GameObject("evento_iniciado");
-            evento_iniciado.transform.parent = eventos.transform;
-            evento_iniciado.transform.position = new Vector2(40,30);
-            evento_iniciado.AddComponent<detectarJugPos>();
+            GameObject enem = Instantiate(GameObject.Find("control/SistemaEnemigos/tempestad_oscura"));
+            enem.transform.parent = eventos.transform;
+            enem.transform.position = new Vector2(-10, -20);
 
-            evento_iniciado.GetComponent<detectarJugPos>().nombre_mision = nombre;
-            evento_iniciado.GetComponent<detectarJugPos>().heroe = LayerMask.GetMask("Player");
-            evento_iniciado.GetComponent<detectarJugPos>().escena = 2;
-            evento_iniciado.GetComponent<detectarJugPos>().enabled = false;
-
-            evento_iniciado.AddComponent<iniciado_fin>();
+            enem.AddComponent<marca>();
+            enem.GetComponent<marca>().escena = 2;
+            enem.GetComponent<marca>().nombre_mision = nombre;
+            enem.AddComponent<limpieza_fin>();
         }
 
         public override void agregarAlDiario()
@@ -49,7 +44,7 @@ namespace test010
             {
                 GameObject.Find("Hero").GetComponent<diario>().agregar(this);
                 agregado = true;
-                animacionTextoMision("Iniciaste: ");                
+                animacionTextoMision("Iniciaste: ");
             }
         }
 
@@ -71,7 +66,7 @@ namespace test010
         {
             if (agregado && terminado_no_entregado && !completado)
             {
-                completado = true;                
+                completado = true;
                 return true;
             }
             else

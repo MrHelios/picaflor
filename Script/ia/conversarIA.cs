@@ -71,18 +71,23 @@ namespace test010
         }
 
         private void armarMision(mision q)
-        {
+        {            
             Text texto = ui_conversar.transform.GetChild(4).gameObject.GetComponent<Text>();
 
             if (!q.estaAgregado())
             {
                 texto.text = q.getInfoPre();
                 q.agregarAlDiario();
+                q.crearEventoMision();
             }
             else if (q.estaTerminada())
             {
                 texto.text = q.getInfoPost();
                 q.seCompleto();
+            }
+            else
+            {
+                texto.text = "";
             }
         }
 
@@ -96,6 +101,10 @@ namespace test010
                 GameObject hijo = canvas.transform.GetChild(i).gameObject;
                 hijo.SetActive(true);
             }
+
+            Button boton_mision = ui_conversar.transform.GetChild(5).gameObject.GetComponent<Button>();
+            boton_mision.onClick.RemoveAllListeners();
+
             ui_conversar.SetActive(false);
             ui_conversar.transform.GetChild(5).gameObject.SetActive(false);
         }

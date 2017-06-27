@@ -8,12 +8,26 @@ namespace test010
     public class atribPrincipales : atrib
     {
 
-        private int exp_muerte;
+        protected int exp_muerte;
+        protected item drop;
 
         private void Start()
         {
+            iniciar();
+        }
+
+        public void iniciar()
+        {
             vida = vida_max = 30;
             exp_muerte = 10;
+            drop = GameObject.Find("Inventario/moneda").GetComponent<item>();
+            drop.setCantidad(9);
+        }
+
+        public void setDrop()
+        {
+            drop = GameObject.Find("Inventario/moneda").GetComponent<item>();
+            drop.setCantidad(9);
         }
 
         public void setExpMuerte(int t)
@@ -21,12 +35,34 @@ namespace test010
             exp_muerte = t;
         }
 
+        public void sumarExp(GameObject go)
+        {
+            go.GetComponent<atribPrincipalesPlayer>().sumarExp(exp_muerte);
+        }
+
+        public void queDrop(GameObject go)
+        {
+            go.GetComponent<inventario>().agregar(drop);
+        }
+
+        public void muerte()
+        {
+            sumarExp(GameObject.Find("Hero"));
+            queDrop(GameObject.Find("Hero"));
+
+            if (GetComponent<marca>() != null)
+                GetComponent<marca>().misionTerminada();
+
+            GetComponent<destruirObjeto>().enabled = true;
+            GetComponent<destruirObjeto>().ahora();
+        }
+
         public override void perderVida(float f)
         {
             vida -= f;
             gameObject.transform.GetChild(0).GetComponent<uiEnemyVida>().modificar(vida / vida_max);
 
-            if (GetComponent<detectarJugadorIA>().enabled)
+            if (GetComponent<detectarJugadorIA>() != null && GetComponent<detectarJugadorIA>().enabled)
             {
                 GetComponent<detectarJugadorIA>().setJugador(GameObject.Find("Hero").gameObject.GetComponent<Collider2D>());
                 GetComponent<detectarJugadorIA>().activar();
@@ -34,16 +70,8 @@ namespace test010
             }
 
             if (vida <= 0)
-            {
-                GameObject.Find("Hero").GetComponent<atribPrincipalesPlayer>().sumarExp(exp_muerte);
-
-                if (gameObject.transform.parent != null && gameObject.transform.parent.gameObject.GetComponent<removerObstaculos>() != null)
-                    gameObject.transform.parent.gameObject.GetComponent<removerObstaculos>().unoMenos();
-
-                GetComponent<destruirObjeto>().enabled = true;
-                GetComponent<destruirObjeto>().ahora();
-            }
-        }
+                muerte();
+        }        
 
         public override void perderMana(float m)
         {

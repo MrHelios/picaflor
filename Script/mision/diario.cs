@@ -31,7 +31,9 @@ namespace test010
 
             bool esta = false;
             for (int i = 0; i < temp.Length && !esta; i++)
-                esta = temp[i].Equals(n);
+            {
+                esta = temp[i].Equals(n);                
+            }
 
             while (d.Count != 0)
                 historial.Push(d.Pop());
@@ -59,6 +61,35 @@ namespace test010
                 historial.Push(d.Pop());
 
             return temp[i-1];
+        }
+
+        public void status()
+        {
+            Stack<mision> d = new Stack<mision>();
+            string[] temp = new string[historial.Count];
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i] = historial.Peek().getNombre();
+
+                mision m = historial.Peek();
+                Debug.Log(m.getNombre());
+                Debug.Log(m.estaAgregado());
+                Debug.Log(m.estaTerminada());
+
+                d.Push(historial.Pop());
+            }
+            
+
+            while (d.Count != 0)
+                historial.Push(d.Pop());
+        }
+
+        public mision[] getHistorial()
+        {
+            mision[] m = new mision[historial.Count];
+            historial.CopyTo(m, 0);
+            return m;
         }
 
     }

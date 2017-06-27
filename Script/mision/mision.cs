@@ -18,6 +18,7 @@ namespace test010
         protected bool terminado_no_entregado;
         protected bool completado;
 
+        public abstract void crearEventoMision();
 
         public abstract bool cumpleRequisito();
 

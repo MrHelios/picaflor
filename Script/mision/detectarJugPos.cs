@@ -23,7 +23,6 @@ namespace test010
             if (col != null && col.GetComponent<diario>().estaMision(nombre_mision))
             {
                 col.GetComponent<diario>().getMision(nombre_mision).terminasteNoEntregaste();
-                Debug.Log("Terminaste!");
                 GetComponent<detectarJugPos>().enabled = false;
             }
 		

@@ -10,6 +10,11 @@ namespace test010
 
         void Start()
         {
+            iniciar();
+        }
+
+        public void iniciar()
+        {
             posicion = 0;
             campaña = 0;
 
@@ -42,10 +47,15 @@ namespace test010
         {
             if (!agregado)
             {
-                GameObject.Find("Hero").GetComponent<diario>().agregar(this);
-                agregado = true;
+                agregar();
                 animacionTextoMision("Iniciaste: ");
             }
+        }
+
+        public void agregar()
+        {
+            GameObject.Find("Hero").GetComponent<diario>().agregar(this);
+            agregado = true;
         }
 
         public override bool cumpleRequisito()

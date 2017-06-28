@@ -4,91 +4,73 @@ using UnityEngine;
 
 namespace test010
 {
-    public class diario : MonoBehaviour {
-
-        private Stack<mision> historial;
+    public class diario : MonoBehaviour
+    {
+        
+        private LinkedList<mision> historial;        
 
         void Awake()
         {
-            historial = new Stack<mision>();    
+            iniciar();
+        }
+
+        public void iniciar()
+        {
+            historial = new LinkedList<mision>();
+        }
+
+        public int cantidad()
+        {
+            return historial.Count;
         }
 
         public void agregar(mision m)
         {
-            historial.Push(m);
+            historial.AddFirst(m);
         }
 
         public bool estaMision(string n)
         {
-            Stack<mision> d = new Stack<mision>();
-            string[] temp = new string[historial.Count];
+            LinkedListNode<mision> m = historial.First;
+            bool esta = m.Value.getNombre() == n;
 
-            for (int i = 0; i < temp.Length; i++)
+            while (m.Next != null && !esta)
             {
-                temp[i] = historial.Peek().getNombre();
-                d.Push(historial.Pop());
+                m = m.Next;
+                esta = m.Value.getNombre() == n;
             }
-
-            bool esta = false;
-            for (int i = 0; i < temp.Length && !esta; i++)
-            {
-                esta = temp[i].Equals(n);                
-            }
-
-            while (d.Count != 0)
-                historial.Push(d.Pop());
 
             return esta;
         }
 
         public mision getMision(string n)
         {
-            int i;
-            Stack<mision> d = new Stack<mision>();
-            mision[] temp = new mision[historial.Count];
+            LinkedListNode<mision> m = historial.First;
+            bool esta = m.Value.getNombre() == n;
 
-            for (i = 0; i < temp.Length; i++)
+            while (m.Next != null && !esta)
             {
-                temp[i] = historial.Peek();
-                d.Push(historial.Pop());
+                m = m.Next;
+                esta = m.Value.getNombre() == n;
             }
 
-            bool esta = false;            
-            for (i = 0; i < temp.Length && !esta; i++)
-                esta = temp[i].Equals(n);
-
-            while (d.Count != 0)
-                historial.Push(d.Pop());
-
-            return temp[i-1];
-        }
-
-        public void status()
-        {
-            Stack<mision> d = new Stack<mision>();
-            string[] temp = new string[historial.Count];
-
-            for (int i = 0; i < temp.Length; i++)
-            {
-                temp[i] = historial.Peek().getNombre();
-
-                mision m = historial.Peek();
-                Debug.Log(m.getNombre());
-                Debug.Log(m.estaAgregado());
-                Debug.Log(m.estaTerminada());
-
-                d.Push(historial.Pop());
-            }
-            
-
-            while (d.Count != 0)
-                historial.Push(d.Pop());
+            if (esta)
+                return m.Value;
+            else
+                return null;
         }
 
         public mision[] getHistorial()
         {
             mision[] m = new mision[historial.Count];
-            historial.CopyTo(m, 0);
+
+            LinkedListNode<mision> recorre = historial.First;
+            for (int i = 0; i < m.Length; i++)
+            {
+                m[i] = recorre.Value;
+                recorre = recorre.Next;
+            }
+
             return m;
         }
 

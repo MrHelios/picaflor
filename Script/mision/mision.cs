@@ -79,10 +79,15 @@ namespace test010
             return terminado_no_entregado;
         }
 
+        public void seTermino()
+        {
+            terminado_no_entregado = true;
+        }
+
         public void terminasteNoEntregaste()
         {
             animacionTextoMision("Terminado: ");
-            terminado_no_entregado = true;
+            seTermino();
         }
 
         public bool estaCompletado()

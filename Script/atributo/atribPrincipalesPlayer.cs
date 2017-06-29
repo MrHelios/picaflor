@@ -39,7 +39,12 @@ namespace test010
 
             experiencia = control.GetComponent<gamecontrol>().getExperiencia();
             nivel = control.GetComponent<gamecontrol>().getNivel();
-            GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosicion();
+            if (control.GetComponent<gamecontrol>().getMuerto())
+                GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosicion();
+            else
+                GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosPortal();
+
+            control.GetComponent<gamecontrol>().setMuerto(false);
 
             // ESTO ESTA SUJETO A CAMBIO.
             exp_proximo_nivel = nivel * 10;
@@ -123,8 +128,11 @@ namespace test010
                 GetComponent<Animator>().SetTrigger("sangre");
             }
 
-            if (vida <= 0) {
+            if (vida <= 0)
+            {
+                GameObject control = GameObject.Find("control");
                 gameObject.GetComponent<loadSceneMuerte>().muerte();
+                control.GetComponent<gamecontrol>().setMuerto(true);
             }        
         }
 

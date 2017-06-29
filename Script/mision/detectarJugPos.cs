@@ -20,9 +20,10 @@ namespace test010
 
             Collider2D col = Physics2D.OverlapCircle(transform.position, radio, heroe);
 
-            if (col != null && col.GetComponent<diario>().estaMision(nombre_mision))
+            if (col != null &&
+                GameObject.Find("control/diario").GetComponent<diario>().estaMision(nombre_mision))
             {
-                col.GetComponent<diario>().getMision(nombre_mision).terminasteNoEntregaste();
+                GameObject.Find("control/diario").GetComponent<diario>().getMision(nombre_mision).terminasteNoEntregaste();
                 GetComponent<detectarJugPos>().enabled = false;
             }
 		

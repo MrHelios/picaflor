@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace test010
 {
-    public class diario : MonoBehaviour
+    public class diario: MonoBehaviour
     {
         
-        private LinkedList<mision> historial;        
+        private LinkedList<mision> historial;
 
         void Awake()
         {
@@ -15,8 +15,8 @@ namespace test010
         }
 
         public void iniciar()
-        {
-            historial = new LinkedList<mision>();
+        {            
+            historial = new LinkedList<mision>();            
         }
 
         public int cantidad()
@@ -27,37 +27,55 @@ namespace test010
         public void agregar(mision m)
         {
             historial.AddFirst(m);
-        }
+        }        
 
         public bool estaMision(string n)
         {
-            LinkedListNode<mision> m = historial.First;
-            bool esta = m.Value.getNombre() == n;
-
-            while (m.Next != null && !esta)
+            if (historial.Count != 0)
             {
-                m = m.Next;
-                esta = m.Value.getNombre() == n;
-            }
+                LinkedListNode<mision> m = historial.First;
+                bool esta = m.Value.getNombre() == n;
 
-            return esta;
+                while (m.Next != null && !esta)
+                {
+                    m = m.Next;
+                    esta = m.Value.getNombre() == n;
+                }
+
+                return esta;
+            }
+            return false;
         }
 
         public mision getMision(string n)
         {
-            LinkedListNode<mision> m = historial.First;
-            bool esta = m.Value.getNombre() == n;
-
-            while (m.Next != null && !esta)
+            if (historial.Count != 0)
             {
-                m = m.Next;
-                esta = m.Value.getNombre() == n;
-            }
+                LinkedListNode<mision> m = historial.First;
+                bool esta = m.Value.getNombre() == n;
 
-            if (esta)
-                return m.Value;
-            else
-                return null;
+                while (m.Next != null && !esta)
+                {
+                    m = m.Next;
+                    esta = m.Value.getNombre() == n;
+                }
+
+                if (esta)
+                    return m.Value;
+                else
+                    return null;
+            }
+            return null;
+        }
+
+        public void setH(LinkedList<mision> h)
+        {
+            historial = h;
+        }
+
+        public LinkedList<mision> getH()
+        {
+            return historial;
         }
 
         public mision[] getHistorial()

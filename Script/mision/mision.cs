@@ -16,15 +16,28 @@ namespace test010
 
         protected bool agregado;
         protected bool terminado_no_entregado;
-        protected bool completado;
+        public bool completado;
 
-        public abstract void crearEventoMision();
-
-        public abstract bool cumpleRequisito();
+        public abstract void crearEventoMision();        
 
         public abstract bool puedeTerminar();
 
         public abstract void agregarAlDiario();
+
+        public bool cumpleRequisito()
+        {
+            if (posicion == 0 && !GameObject.Find("control/diario").GetComponent<diario>().estaMision(nombre))
+                return true;
+            else
+            {
+                Debug.Log(GameObject.Find("control/diario").GetComponent<diario>().getMision(nombre).completado);
+                if (posicion == 0 &&
+                    GameObject.Find("control/diario").GetComponent<diario>().estaMision(nombre) &&
+                    !GameObject.Find("control/diario").GetComponent<diario>().getMision(nombre).completado)
+                    return true;
+            }
+            return false;
+        }
 
         public void animacionTextoMision(string n)
         {
@@ -92,7 +105,11 @@ namespace test010
 
         public bool estaCompletado()
         {
-            return completado;
+            mision m = GameObject.Find("Hero").GetComponent<diario>().getMision(nombre);
+            if (m == null)
+                return false;
+            else
+                return m.completado;
         }
 
         public void seCompleto()

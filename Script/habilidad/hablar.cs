@@ -21,7 +21,7 @@ namespace test010
 
         void FixedUpdate()
         {
-            npc_amistoso = Physics2D.OverlapCircle(gameObject.transform.position, 3f, LayerMask.GetMask("Friendly"));
+            npc_amistoso = Physics2D.OverlapCircle(gameObject.transform.position, 1f, LayerMask.GetMask("Friendly"));
             if (Input.GetKeyDown(tecla) && npc_amistoso != null)
                 efecto();
         }

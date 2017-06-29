@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace test010
 {
-    public class gamecontrol : MonoBehaviour {
-
+    public class gamecontrol : MonoBehaviour
+    {
         public static GameObject control;
 
         protected int fuerza;
@@ -19,13 +19,16 @@ namespace test010
 
         protected float experiencia;
         protected int nivel;
+        
 
         private Vector3 posicion;
-
+        private Vector3 pos_portal;
         private int escena;
+        private int queEscenaVoy;
+        private bool muerto;
 	
-	    void Awake () {            
-
+	    void Awake ()
+        {
             if (control == null)
             {
                 DontDestroyOnLoad(gameObject);
@@ -35,15 +38,14 @@ namespace test010
             else if(control != gameObject)
             {                
                 Destroy(gameObject);
-            }
-            
+            }            
         }
 
         private void iniciarValores()
         {
             experiencia = 0;
             nivel = 1;
-            posicion = new Vector3(0, 0, 0);
+            pos_portal = posicion = new Vector3(0, 0, 0);
 
             fuerza = 3;
             fortaleza = 3;
@@ -52,7 +54,13 @@ namespace test010
             inteligencia = 3;
             suerte = 3;
 
-            escena = 2;
+            queEscenaVoy = escena = 2;
+            muerto = false;
+
+            GameObject d = new GameObject("diario");
+            d.transform.parent = gameObject.transform;
+            d.AddComponent<diario>();
+            d.SetActive(true);
         }
 
         public void setFuerza(int f)
@@ -164,6 +172,36 @@ namespace test010
         {
             return escena;
         }
+
+        public void setEscenaVoy(int n)
+        {
+            queEscenaVoy = n;
+        }
+
+        public int getQueEscenaVoy()
+        {
+            return queEscenaVoy;
+        }
+
+        public void setPosPortal(Vector3 v)
+        {
+            pos_portal = v;
+        }
+
+        public Vector3 getPosPortal()
+        {
+            return pos_portal;
+        }
+
+        public void setMuerto(bool m)
+        {
+            muerto = m;
+        }
+
+        public bool getMuerto()
+        {
+            return muerto;
+        }        
 
     }
 }

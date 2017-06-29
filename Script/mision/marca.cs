@@ -11,8 +11,8 @@ namespace test010
 
         public void misionTerminada()
         {
-            if (GameObject.Find("Hero").GetComponent<diario>().estaMision(nombre_mision))
-                GameObject.Find("Hero").GetComponent<diario>().getMision(nombre_mision).terminasteNoEntregaste();
+            if (GameObject.Find("control/diario").GetComponent<diario>().estaMision(nombre_mision))
+                GameObject.Find("control/diario").GetComponent<diario>().getMision(nombre_mision).terminasteNoEntregaste();
             else
                 Debug.Log("No esta la mision en el diario.");
         }        

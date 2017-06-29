@@ -54,23 +54,9 @@ namespace test010
 
         public void agregar()
         {
-            GameObject.Find("Hero").GetComponent<diario>().agregar(this);
+            GameObject.Find("control/diario").GetComponent<diario>().agregar(this);
             agregado = true;
-        }
-
-        public override bool cumpleRequisito()
-        {
-            if (posicion == 0)
-                return true;
-            else
-            {
-                mision mision_ant = campaña_GO.transform.GetChild(campaña).transform.GetChild(posicion - 1).gameObject.GetComponent<mision>();
-                if (mision_ant.estaCompletado())
-                    return true;
-                else
-                    return false;
-            }
-        }
+        }        
 
         public override bool puedeTerminar()
         {

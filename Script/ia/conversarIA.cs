@@ -47,7 +47,7 @@ namespace test010
             boton_salir.onClick.AddListener(() => desactivar());
 
             mision m = gameObject.GetComponent<mision>();
-            if (m != null && m.cumpleRequisito() && !m.estaCompletado())
+            if (m != null && m.cumpleRequisito())
             {
                 ui_conversar.transform.GetChild(5).gameObject.SetActive(true);
                 Button boton_mision = ui_conversar.transform.GetChild(5).gameObject.GetComponent<Button>();

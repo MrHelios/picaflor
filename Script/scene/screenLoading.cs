@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using test010;
 
-public class screenLoading : MonoBehaviour {
+public class screenLoading : MonoBehaviour
+{
 
     private bool loadScene;
-    public int scene;    
+    private int scene;    
 
     public void setScene(int i)
     {
@@ -16,6 +18,12 @@ public class screenLoading : MonoBehaviour {
 
     private IEnumerator loadNewScene()
     {
+        GameObject control = GameObject.Find("control");
+        if (control.GetComponent<gamecontrol>().getMuerto())
+            scene = control.GetComponent<gamecontrol>().getEscena();
+        else
+            scene = control.GetComponent<gamecontrol>().getQueEscenaVoy();
+
         yield return new WaitForSeconds(3);
 
         AsyncOperation async = SceneManager.LoadSceneAsync(scene);

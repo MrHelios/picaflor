@@ -18,19 +18,41 @@ namespace test010
         {
             // Valores por defecto.
             gameObject.transform.position = pos_caso_de_muerte;
-
-            valoresIniciales();
-            vida = vida_max = calculoVida();
-            mana = mana_max = calculoMana();
-            aguante = aguante_max = 30;
-
             clase = "Mago";
         }
 
         void Start()
         {
+            valoresIniciales();
+            armarVida();
             // Configurar la ui del exp.
+            perderVida(0);
+            perderMana(0);
+            perderAguante(0);
             sumarExp(0);
+        }
+
+        private void armarVida()
+        {
+            GameObject control = GameObject.Find("control");
+            if (control.GetComponent<gamecontrol>().getMuerto())
+            {                
+                vida = vida_max = calculoVida();
+                mana = mana_max = calculoMana();
+                aguante = aguante_max = 30;
+                GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosicion();
+            }
+            else
+            {                
+                vida_max = calculoVida();
+                vida = control.GetComponent<gamecontrol>().getVida();
+                mana_max = calculoMana();
+                mana = control.GetComponent<gamecontrol>().getMana();
+                aguante_max = 30;
+                aguante = control.GetComponent<gamecontrol>().getEnergia();
+                GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosPortal();            
+            }
+            control.GetComponent<gamecontrol>().setMuerto(false);
         }
 
         private void valoresIniciales()
@@ -38,13 +60,7 @@ namespace test010
             GameObject control = GameObject.Find("control");
 
             experiencia = control.GetComponent<gamecontrol>().getExperiencia();
-            nivel = control.GetComponent<gamecontrol>().getNivel();
-            if (control.GetComponent<gamecontrol>().getMuerto())
-                GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosicion();
-            else
-                GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosPortal();
-
-            control.GetComponent<gamecontrol>().setMuerto(false);
+            nivel = control.GetComponent<gamecontrol>().getNivel();            
 
             // ESTO ESTA SUJETO A CAMBIO.
             exp_proximo_nivel = nivel * 10;
@@ -121,7 +137,7 @@ namespace test010
         {
             if (gameObject.GetComponent<escudoDivino>() != null)
                 gameObject.GetComponent<escudoDivino>().corte();
-            else
+            else if(f>0)
             {
                 vida -= f;
                 gameObject.GetComponent<uiPlayerVida>().modificar(vida / vida_max);

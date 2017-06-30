@@ -25,6 +25,9 @@ namespace test010
         private Vector3 pos_portal;
         private int escena;
         private int queEscenaVoy;
+        private float vida;
+        private float mana;
+        private float energia;
         private bool muerto;
 	
 	    void Awake ()
@@ -55,7 +58,7 @@ namespace test010
             suerte = 3;
 
             queEscenaVoy = escena = 2;
-            muerto = false;
+            muerto = true;
 
             GameObject d = new GameObject("diario");
             d.transform.parent = gameObject.transform;
@@ -201,7 +204,37 @@ namespace test010
         public bool getMuerto()
         {
             return muerto;
-        }        
+        }
+
+        public void setVida(float v)
+        {
+            vida = v;
+        }
+
+        public float getVida()
+        {
+            return vida;
+        }
+
+        public void setMana(float m)
+        {
+            mana = m;
+        }
+
+        public float getMana()
+        {
+            return mana;
+        }
+
+        public void setEnergia(float e)
+        {
+            energia = e;
+        }
+
+        public float getEnergia()
+        {
+            return energia;
+        }
 
     }
 }

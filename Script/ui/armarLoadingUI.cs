@@ -15,7 +15,8 @@ namespace test010
 
         private void armarLoading()
         {
-            transform.GetChild(0).gameObject.transform.position = new Vector3(wx - 100, 50, 0);
+            for(int i=0; i<transform.childCount; i++)
+                transform.GetChild(i).gameObject.transform.position = new Vector3(wx - 100, 50, 0);
         }
 	    
     }

@@ -20,7 +20,7 @@ namespace test010
             estaVentanaHabilidades();
             estaVentanaConfig();
 
-            botones_panel_atajos(3, 9);
+            botones_panel_atajos(3, 7);
             ventana_personaje();
             ventana_habilidades();
             ventana_config();
@@ -227,44 +227,7 @@ namespace test010
                 IntegrationTest.Fail();
                 Debug.Log(hijo);
                 Debug.Log("El GO no tiene la componente para activar la ventana de config");
-            }
-
-            // DIARIO
-            hijo = ui.transform.GetChild(7).gameObject;
-            if (hijo.name != "boton_diario")
-            {
-                IntegrationTest.Fail();
-                Debug.Log("El nombre del boton_diario no es correcto");
-                Debug.Log("Se esperaba:  boton_diairo -> " + hijo.name);
-            }
-
-            if (hijo.GetComponent<Button>() == null || !hijo.GetComponent<Button>().enabled)
-            {
-                IntegrationTest.Fail();
-                Debug.Log("El GO boton_diario no tiene boton como componente o esta desactivado.");
-            }
-
-            if (hijo.GetComponent<ventana_diario>() == null)
-            {
-                IntegrationTest.Fail();
-                Debug.Log(hijo);
-                Debug.Log("El GO no tiene la componente para activar la ventana de config");
-            }
-
-            // INVENTARIO
-            hijo = ui.transform.GetChild(8).gameObject;
-            if (hijo.name != "boton_inventario")
-            {
-                IntegrationTest.Fail();
-                Debug.Log("El nombre del boton_inventario no es correcto");
-                Debug.Log("Se esperaba:  boton_inventario -> " + hijo.name);
-            }
-
-            if (hijo.GetComponent<Button>() == null || !hijo.GetComponent<Button>().enabled)
-            {
-                IntegrationTest.Fail();
-                Debug.Log("El GO boton_inventario no tiene boton como componente o esta desactivado.");
-            }           
+            }            
 
         }
 
@@ -322,8 +285,8 @@ namespace test010
             ui = canvas.transform.GetChild(6).gameObject;
             cantidadCorrectaElementos(ui, 3, "La cantidad de botones en la ventana configuracion no es correcta.");
 
-            string[] datos = { "boton_reanudar", "boton_opciones", "boton_salir" };
-            for (int i = 0; i < ui.transform.childCount; i++)
+            string[] datos = { "boton_reanudar", "boton_opciones", "boton_menu", "boton_salir" };
+            for (int i = 0; i < datos.Length; i++)
             {
                 GameObject hijo = ui.transform.GetChild(i).gameObject;
 

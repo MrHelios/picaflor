@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 namespace test010
 {
-    public class armarDiario : MonoBehaviour {
+    public class armarDiario : MonoBehaviour
+    {
 
         private GameObject hero;
         private GameObject entrada;	    
 
         public void armar()
         {
-            hero = GameObject.Find("Hero");
+            hero = GameObject.Find("control/diario");
             entrada = gameObject.transform.GetChild(2).gameObject;
 
             mision[] s = hero.GetComponent<diario>().getHistorial();
@@ -28,6 +29,5 @@ namespace test010
                 e.SetActive(true);
             }
         }
-
     }
 }

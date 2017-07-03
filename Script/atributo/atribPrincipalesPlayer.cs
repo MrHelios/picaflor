@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 
 namespace test010
 {
-    public class atribPrincipalesPlayer : atrib {
+    public class atribPrincipalesPlayer : atrib
+    {
 
         private float experiencia;    
         private float exp_proximo_nivel;

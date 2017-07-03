@@ -7,37 +7,26 @@ namespace test010
 {
     public class testInventarioUI : MonoBehaviour
     {
-
+        private string UBICACION;
+        private GameObject inv;
         private GameObject hero;
 
         void Awake()
         {
-            hero = GameObject.Find("Hero");
-            hero.AddComponent<inventario>().iniciar();
-
-            GameObject inv = new GameObject("Inventario");
-            GameObject mon = new GameObject("moneda");
-            mon.transform.parent = inv.transform;
-            mon.AddComponent<oro>().iniciar();
+            UBICACION = "control/HeroInventario";
+            inv = GameObject.Find(UBICACION);
+            hero = GameObject.Find("Hero");            
         }
-
+        
         void Start ()
         {
             GameObject enem = new GameObject("enem");
             enem.AddComponent<atribPrincipales>();
             enem.GetComponent<atribPrincipales>().iniciar();
-            enem.GetComponent<atribPrincipales>().queDrop(hero);
-
-            GameObject n = new GameObject();
-            n.AddComponent<armadura_templario_0>().iniciar();             
-            hero.GetComponent<inventario>().agregar(n.GetComponent<item>());
-
-            testCantidad();            
-            testVentana();            
-
-            IntegrationTest.Pass();
+            enem.GetComponent<atribPrincipales>().queDrop(inv);            
 	    }
 
+        /*
         public void testCantidad()
         {
             int hay = hero.GetComponent<inventario>().cantidad();
@@ -99,6 +88,6 @@ namespace test010
                 Debug.Log("Se esperaba " + 2 + " -> " + vent.transform.childCount);
             }
         }
-	    
+	    */
     }
 }

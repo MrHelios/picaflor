@@ -5,16 +5,15 @@ using UnityEngine.UI;
 
 namespace test010
 {
-    public class ventana_diario : MonoBehaviour
+    public class ventana_inv : MonoBehaviour
     {
         private GameObject go;
         private string UBICACION;
 
         void Start()
         {
-            UBICACION = "Canvas/ui_panel_personaje/boton_diario";
+            UBICACION = "Canvas/ui_panel_personaje/boton_inventario";
             go = GameObject.Find(UBICACION);
-
             activar();            
         }
 
@@ -27,10 +26,9 @@ namespace test010
         public void activarEnClick()
         {
             enClick("Canvas/ui_ventana_personaje", false);
-            enClick("Canvas/ui_ventana_inventario", false);
-            enClick("Canvas/ui_ventana_diario", true);
-
-            GameObject.Find("Canvas/ui_ventana_diario").GetComponent<armarDiario>().armar();
+            enClick("Canvas/ui_ventana_diario", false);
+            enClick("Canvas/ui_ventana_inventario", true);
+            GameObject.Find("Canvas/ui_ventana_inventario").GetComponent<armarInventario>().armarVentana();
         }        
 
         private void enClick(string u, bool e)
@@ -57,5 +55,6 @@ namespace test010
                         hijo.transform.GetChild(j).GetComponent<Text>().enabled = e;
             }
         }
+
     }
 }

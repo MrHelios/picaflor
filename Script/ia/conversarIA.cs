@@ -14,36 +14,49 @@ namespace test010
         protected GameObject ui_conversar;
         protected GameObject hero;
 
+        private static string NOMBRE_UI;
+
 	    void buscar() {
-            canvas = GameObject.Find("Canvas");
-            ui_conversar = canvas.transform.GetChild(8).gameObject;
+            ui_conversar = GameObject.Find("Canvas/ui_ventana_conversar");
             hero = GameObject.Find("Hero");
 	    }
 
         public void activar()
-        {
+        {            
             buscar();
 
+            for (int i = 0; i < ui_conversar.transform.childCount; i++)
+            {
+                GameObject hijo = ui_conversar.transform.GetChild(i).gameObject;
+                if (hijo.GetComponent<Image>() != null)
+                    hijo.GetComponent<Image>().enabled = true;
+
+                if (hijo.GetComponent<Text>() != null)
+                    hijo.GetComponent<Text>().enabled = true;
+
+                if (hijo.GetComponent<Button>() != null)
+                    hijo.GetComponent<Button>().enabled = true;
+
+                for (int j = 0; j < hijo.transform.childCount; j++)
+                {
+                    if (hijo.transform.GetChild(j).GetComponent<Text>() != null)
+                        hijo.transform.GetChild(j).GetComponent<Text>().enabled = true;
+                }
+
+            }
+            
             hero.GetComponent<movJugador>().enabled = false;
             hero.transform.GetChild(0).gameObject.SetActive(false);
 
-            for (int i = 0; i < canvas.transform.childCount; i++)
-            {
-                GameObject hijo = canvas.transform.GetChild(i).gameObject;
-                if (hijo.activeSelf)
-                    hijo.SetActive(false);                
-            }
-            ui_conversar.SetActive(true);
-
-            armarDialogo();
+            armarDialogo();            
         }
 
         private void armarDialogo()
         {
-            Button boton_rumor = ui_conversar.transform.GetChild(2).gameObject.GetComponent<Button>();
+            Button boton_rumor = GameObject.Find("Canvas/ui_ventana_conversar/boton_rumor").gameObject.GetComponent<Button>();
             boton_rumor.onClick.AddListener(() => armarRumor());
 
-            Button boton_salir = ui_conversar.transform.GetChild(3).gameObject.GetComponent<Button>();
+            Button boton_salir = GameObject.Find("Canvas/ui_ventana_conversar/boton_salir").gameObject.GetComponent<Button>();
             boton_salir.onClick.AddListener(() => desactivar());
 
             mision m = gameObject.GetComponent<mision>();
@@ -54,6 +67,8 @@ namespace test010
                 boton_mision.transform.GetChild(0).gameObject.GetComponent<Text>().text = m.getNombre();
                 boton_mision.onClick.AddListener(() => armarMision(m));
             }
+            else
+                ui_conversar.transform.GetChild(5).gameObject.SetActive(false);
 
             armarSaludo();
         }
@@ -93,20 +108,34 @@ namespace test010
 
         public void desactivar()
         {
-            hero.GetComponent<movJugador>().enabled = true;
-            hero.transform.GetChild(0).gameObject.SetActive(true);
+            bool estado = false;
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < ui_conversar.transform.childCount; i++)
             {
-                GameObject hijo = canvas.transform.GetChild(i).gameObject;
-                hijo.SetActive(true);
+                GameObject hijo = ui_conversar.transform.GetChild(i).gameObject;
+                if (hijo.GetComponent<Image>() != null)
+                    hijo.GetComponent<Image>().enabled = estado;
+
+                if (hijo.GetComponent<Text>() != null)
+                    hijo.GetComponent<Text>().enabled = estado;
+
+                if (hijo.GetComponent<Button>() != null)
+                    hijo.GetComponent<Button>().enabled = estado;
+
+                for (int j = 0; j < hijo.transform.childCount; j++)
+                {
+                    if (hijo.transform.GetChild(j).GetComponent<Text>() != null)
+                        hijo.transform.GetChild(j).GetComponent<Text>().enabled = estado;
+                }
+
             }
 
-            Button boton_mision = ui_conversar.transform.GetChild(5).gameObject.GetComponent<Button>();
-            boton_mision.onClick.RemoveAllListeners();
+            hero.GetComponent<movJugador>().enabled = !estado;
+            hero.transform.GetChild(0).gameObject.SetActive(!estado);
 
-            ui_conversar.SetActive(false);
-            ui_conversar.transform.GetChild(5).gameObject.SetActive(false);
+            GameObject.Find("Canvas/ui_ventana_conversar/boton_rumor").GetComponent<Button>().onClick.RemoveAllListeners();
+            GameObject.Find("Canvas/ui_ventana_conversar/boton_salir").GetComponent<Button>().onClick.RemoveAllListeners();
+            GameObject.Find("Canvas/ui_ventana_conversar/boton_mision").GetComponent<Button>().onClick.RemoveAllListeners();
         }
 
     }

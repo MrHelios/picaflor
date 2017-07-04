@@ -26,11 +26,11 @@ namespace test010
         {
             valoresIniciales();
             armarVida();
-            // Configurar la ui del exp.
+            
+            // Configurar la ui del exp.            
             perderVida(0);
             perderMana(0);
             perderAguante(0);
-            sumarExp(0);
         }
 
         private void armarVida()
@@ -102,9 +102,7 @@ namespace test010
             experiencia += f;            
 
             if (experiencia >= exp_proximo_nivel)
-                nivelNuevo();
-
-            gameObject.GetComponent<uiPlayerExp>().modificar(experiencia / exp_proximo_nivel);
+                nivelNuevo();            
         }
 
         public float getExperiencia()

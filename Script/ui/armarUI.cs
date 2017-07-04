@@ -23,15 +23,15 @@ namespace test010
 
         private void inGame()
         {
-            transform.GetChild(0).gameObject.transform.position = new Vector3(40, 53, 0);
-            transform.GetChild(1).gameObject.transform.position = new Vector3(40, 31, 0);
-            transform.GetChild(2).gameObject.transform.position = new Vector3(40, 9, 0);
-
-            transform.GetChild(9).gameObject.transform.position = new Vector3(wx * 0.5f - 190, hy * 0.05f + 20, 0);
-            transform.GetChild(3).gameObject.transform.position = new Vector3(wx * 0.5f, 40, 0);
-
-            transform.GetChild(8).gameObject.transform.position = new Vector3(wx * 0.25f, hy * 0.5f, 0);
-            transform.GetChild(8).transform.GetChild(4).transform.position = new Vector3(wx * 0.5f, 0 + 40, 0);
+            string n;
+            n = "Canvas/ui_vida";
+            GameObject.Find(n).gameObject.transform.position = new Vector3(40, 53, 0);
+            n = "Canvas/ui_mana";
+            GameObject.Find(n).gameObject.transform.position = new Vector3(40, 31, 0);
+            n = "Canvas/ui_energia";
+            GameObject.Find(n).gameObject.transform.position = new Vector3(40, 9, 0);
+            n = "Canvas/ui_panel_atajos";
+            GameObject.Find(n).gameObject.transform.position = new Vector3(wx * 0.5f, 40, 0);            
         }
 
     }

@@ -44,14 +44,24 @@ namespace test010
                 GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosicion();
             }
             else
-            {                
+            {
+                GameObject h = GameObject.Find("control/HeroSuplente");                
+                GameObject otro_h = GameObject.Find("Hero");                
+
                 vida_max = calculoVida();
-                vida = control.GetComponent<gamecontrol>().getVida();
+                vida = h.GetComponent<atrib>().getVida();
                 mana_max = calculoMana();
-                mana = control.GetComponent<gamecontrol>().getMana();
+                mana = h.GetComponent<atrib>().getMana();
                 aguante_max = 30;
-                aguante = control.GetComponent<gamecontrol>().getEnergia();
-                GameObject.Find("Hero").gameObject.transform.position = control.GetComponent<gamecontrol>().getPosPortal();            
+                aguante = h.GetComponent<atrib>().getAguante();
+
+                experiencia = h.GetComponent<atribPrincipalesPlayer>().getExperiencia();
+                exp_proximo_nivel = h.GetComponent<atribPrincipalesPlayer>().getExperienciaMax();
+
+                nivel = h.GetComponent<atribPrincipalesPlayer>().queNivel();
+
+                transform.position = control.GetComponent<gamecontrol>().getPosPortal();                
+                DestroyImmediate(h);
             }
             control.GetComponent<gamecontrol>().setMuerto(false);
         }

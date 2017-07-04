@@ -27,9 +27,13 @@ public class cambiarEscenaInGame : MonoBehaviour
             GameObject c = GameObject.Find("control");
             c.GetComponent<gamecontrol>().setEscenaVoy(irEscena);
             c.GetComponent<gamecontrol>().setPosPortal(v);
+            /*
             c.GetComponent<gamecontrol>().setVida(h.GetComponent<atribPrincipalesPlayer>().getVida());
             c.GetComponent<gamecontrol>().setMana(h.GetComponent<atribPrincipalesPlayer>().getMana());
             c.GetComponent<gamecontrol>().setEnergia(h.GetComponent<atribPrincipalesPlayer>().getAguante());
+            */
+            h.name = "HeroSuplente";
+            h.transform.parent = c.transform;
             SceneManager.LoadScene(irEscena);
         }
     }

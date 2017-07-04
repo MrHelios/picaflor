@@ -7,25 +7,27 @@ namespace test010
 {
     public class detectarFogata : habilidad
     {
+        private string NOMBRE;
         private GameObject vent_santuario;
-        private Collider2D fogata;
+        private Collider2D hero;
 
         void Start ()
         {
+            NOMBRE = "ui_ventana_santuario";
             tecla = KeyCode.E;
             icono_hab = null;
 
-            vent_santuario = GameObject.Find("Canvas").transform.GetChild(7).gameObject;
+            vent_santuario = GameObject.Find(NOMBRE);
         }
 
         public override void efecto()
         {
-            atribPrincipalesPlayer h = gameObject.GetComponent<atribPrincipalesPlayer>();
+            atribPrincipalesPlayer h = GameObject.Find("Hero").GetComponent<atribPrincipalesPlayer>();
             gamecontrol control = GameObject.Find("control").GetComponent<gamecontrol>();
 
             control.setNivel(h.queNivel());
             control.setExperiencia(h.getExperiencia());
-            control.setPosicion(fogata.transform.position);
+            control.setPosicion(hero.transform.position);
             control.setFuerza(h.getFuerza());
             control.setFortaleza(h.getFortaleza());
             control.setAgilidad(h.getAgilidad());
@@ -34,14 +36,19 @@ namespace test010
             control.setSuerte(h.getSuerte());
             control.setPuntosNoGastados(h.getPuntosNoGastados());
             control.setEscena(SceneManager.GetActiveScene().buildIndex);
-            
-            vent_santuario.SetActive(true);
-        }	
+
+            activar();
+        }
+
+        public void activar()
+        {
+            GetComponent<ventana_santuario>().activar();
+        }
 	
 	    void FixedUpdate ()
         {
-            fogata = Physics2D.OverlapCircle(gameObject.transform.position, 1f, LayerMask.GetMask("Fogata"));
-            if (Input.GetKeyDown(tecla) && fogata != null)
+            hero = Physics2D.OverlapCircle(gameObject.transform.position, 1f, LayerMask.GetMask("Player"));
+            if (Input.GetKeyDown(tecla) && hero != null)
                 efecto();
 	    }
     }

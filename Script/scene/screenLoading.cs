@@ -22,7 +22,14 @@ public class screenLoading : MonoBehaviour
         if (control.GetComponent<gamecontrol>().getMuerto())
             scene = control.GetComponent<gamecontrol>().getEscena();
         else
+        {
+            Debug.Log("Entras aqui hermano?");
             scene = control.GetComponent<gamecontrol>().getQueEscenaVoy();
+            GameObject otro_h = GameObject.Find("Hero");
+            GameObject h = GameObject.Find("control/Hero");
+            h.transform.parent = null;
+            Destroy(otro_h);
+        }
 
         yield return new WaitForSeconds(3);
 

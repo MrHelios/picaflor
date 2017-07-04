@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace test010
 {
-    public class ventana_nivel : MonoBehaviour {
-
+    public class ventana_nivel : MonoBehaviour 
+    {
         private atrib hero;        
 
         private void Start()
@@ -15,6 +16,7 @@ namespace test010
 
         private bool comprobar()
         {
+            hero = GameObject.Find("Hero").GetComponent<atrib>();
             if (hero.getPuntosNoGastados() > 0)
                 return true;
             else
@@ -24,6 +26,7 @@ namespace test010
         private void quitarPunto()
         {
             hero.setPuntosNoGastados(hero.getPuntosNoGastados() - 1);
+            GameObject.Find("Canvas/ui_ventana_puntos/cantidad").GetComponent<Text>().text = GameObject.Find("Hero").GetComponent<atrib>().getPuntosNoGastados() + "";
         }
 
         public void incrementarFuerza()
@@ -31,8 +34,7 @@ namespace test010
             if (comprobar())
             {
                 hero.setFuerza(hero.getFuerza() + 1);
-                quitarPunto();
-                gameObject.transform.parent.gameObject.SetActive(false);
+                quitarPunto();                
             }
         }
 
@@ -41,8 +43,7 @@ namespace test010
             if (comprobar())
             {            
                 hero.setFortaleza(hero.getFortaleza() + 1);
-                quitarPunto();
-                gameObject.transform.parent.gameObject.SetActive(false);
+                quitarPunto();                
             }
         }
 
@@ -51,8 +52,7 @@ namespace test010
             if (comprobar())
             {            
                 hero.setAgilidad(hero.getAgilidad() + 1);
-                quitarPunto();
-                gameObject.transform.parent.gameObject.SetActive(false);
+                quitarPunto();                
             }
         }
 
@@ -61,8 +61,7 @@ namespace test010
             if (comprobar())
             {
                 hero.setFe(hero.getFe() + 1);            
-                quitarPunto();
-                gameObject.transform.parent.gameObject.SetActive(false);
+                quitarPunto();                
             }
         }
 
@@ -71,8 +70,7 @@ namespace test010
             if (comprobar())
             {
                 hero.setInteligencia(hero.getInteligencia() + 1);            
-                quitarPunto();
-                gameObject.transform.parent.gameObject.SetActive(false);
+                quitarPunto();                
             }
         }
 
@@ -81,8 +79,7 @@ namespace test010
             if (comprobar())
             {
                 hero.setSuerte(hero.getSuerte() + 1);
-                quitarPunto();
-                gameObject.transform.parent.gameObject.SetActive(false);
+                quitarPunto();                
             }
         }
 

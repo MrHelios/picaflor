@@ -35,7 +35,7 @@ public class screenLoading : MonoBehaviour
 
         AsyncOperation async = SceneManager.LoadSceneAsync(scene);
         while (!async.isDone)
-            yield return null;
+            yield return null;        
     }
 	
 	void Update ()

@@ -105,7 +105,7 @@ namespace test010
 
         public bool estaCompletado()
         {
-            mision m = GameObject.Find("Hero").GetComponent<diario>().getMision(nombre);
+            mision m = GameObject.Find("control/diario").GetComponent<diario>().getMision(nombre);
             if (m == null)
                 return false;
             else

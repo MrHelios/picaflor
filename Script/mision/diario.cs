@@ -27,19 +27,27 @@ namespace test010
         public void agregar(mision m)
         {
             historial.AddFirst(m);
-        }        
+        }
+
+        public bool comparar(string n, string n2)
+        {
+            bool igual = n.Length == n2.Length;
+            for (int i = 0; i < n.Length && igual; i++)
+                igual = n[i] == n2[i];
+            return igual;
+        }
 
         public bool estaMision(string n)
         {
             if (historial.Count != 0)
             {
                 LinkedListNode<mision> m = historial.First;
-                bool esta = m.Value.getNombre() == n;
+                bool esta = comparar(m.Value.getNombre(), n);
 
                 while (m.Next != null && !esta)
                 {
                     m = m.Next;
-                    esta = m.Value.getNombre() == n;
+                    esta = comparar(m.Value.getNombre(), n);
                 }
 
                 return esta;
@@ -52,12 +60,12 @@ namespace test010
             if (historial.Count != 0)
             {
                 LinkedListNode<mision> m = historial.First;
-                bool esta = m.Value.getNombre() == n;
+                bool esta = comparar(m.Value.getNombre(), n);
 
                 while (m.Next != null && !esta)
                 {
                     m = m.Next;
-                    esta = m.Value.getNombre() == n;
+                    esta = comparar(m.Value.getNombre(), n);                        
                 }
 
                 if (esta)
@@ -90,6 +98,20 @@ namespace test010
             }
 
             return m;
+        }
+
+        public void recargarEventos()
+        {
+            if (historial.Count != 0)
+            {
+                LinkedListNode<mision> m = historial.First;
+                while (m != null)
+                {
+                    if (!m.Value.completado)
+                        m.Value.crearEventoMision();
+                    m = m.Next;
+                }
+            }
         }
 
     }

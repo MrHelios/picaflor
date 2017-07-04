@@ -9,12 +9,16 @@ using test010;
 
 public class testDiario
 {
-    
+
+    [Test]
     public void test_diario_aceptar_completar_terminar()
     {
-        /*
-        GameObject d = new GameObject("Hero");
+        GameObject c = new GameObject("control");
+        GameObject d = new GameObject("diario");
+        d.transform.parent = c.transform;
         d.AddComponent<diario>().iniciar();
+
+        Assert.AreNotEqual(null, GameObject.Find("control/diario"));
 
         GameObject m_i = new GameObject("iniciado");
         m_i.AddComponent<iniciado>().iniciar();
@@ -52,26 +56,28 @@ public class testDiario
         Assert.AreEqual(true, d.GetComponent<diario>().getMision(n).estaTerminada());
         Assert.AreEqual(true, d.GetComponent<diario>().getMision(n).estaCompletado());
 
-        DestroyObject.DestroyImmediate(d);
-        */
+        DestroyObject.DestroyImmediate(c);
     }
 
-    
+    [Test]
     public void test_diario_varias_misiones()
     {
-        /*
-        GameObject d = new GameObject("Hero");
+        GameObject c = new GameObject("control");
+        GameObject d = new GameObject("diario");
+        d.transform.parent = c.transform;
         d.AddComponent<diario>().iniciar();
 
         GameObject m_i = new GameObject("iniciado");
         m_i.AddComponent<iniciado>();
         m_i.GetComponent<iniciado>().iniciar();
-        m_i.GetComponent<iniciado>().agregar();
+        if(m_i.GetComponent<iniciado>().cumpleRequisito())
+            m_i.GetComponent<iniciado>().agregar();
 
         GameObject m_l = new GameObject("limpieza");
         m_l.AddComponent<limpieza>();
         m_l.GetComponent<limpieza>().iniciar();
-        m_l.GetComponent<limpieza>().agregar();
+        if(m_l.GetComponent<limpieza>().cumpleRequisito())
+            m_l.GetComponent<limpieza>().agregar();
 
         Assert.AreEqual(2, d.GetComponent<diario>().cantidad());
 
@@ -90,7 +96,36 @@ public class testDiario
         Assert.AreEqual(true, m_l.GetComponent<limpieza>().estaAgregado());
         Assert.AreEqual(false, m_l.GetComponent<limpieza>().estaTerminada());
         Assert.AreEqual(false, m_l.GetComponent<limpieza>().estaCompletado());
+
+        DestroyObject.DestroyImmediate(c);
+    }
+
+    [Test]
+    public void test_misma_mision_dist_referencia()
+    {
+        GameObject c = new GameObject("control");
+        GameObject d = new GameObject("diario");
+        d.transform.parent = c.transform;
+        d.AddComponent<diario>().iniciar();
+
+        Assert.AreEqual(true, d.GetComponent<diario>().comparar("perro", "perro"));
+        Assert.AreEqual(false, d.GetComponent<diario>().comparar("perro", "gato"));
+        Assert.AreNotEqual(null, GameObject.Find("control/diario"));
+
+        GameObject m_i = new GameObject("iniciado");
+        m_i.AddComponent<iniciado>().iniciar();
+        if(m_i.GetComponent<iniciado>().cumpleRequisito())
+            m_i.GetComponent<iniciado>().agregar();
+
+        GameObject m_ii = new GameObject("iniciado");
+        m_ii.AddComponent<iniciado>().iniciar();
+        /*
+        if(m_ii.GetComponent<iniciado>().cumpleRequisito())
+            m_ii.GetComponent<iniciado>().agregar();
         */
+
+        Assert.AreEqual(true, GameObject.Find("control/diario").GetComponent<diario>().estaMision(m_ii.GetComponent<mision>().getNombre()));
+        Assert.AreEqual(1, d.GetComponent<diario>().cantidad());
     }
 
 }

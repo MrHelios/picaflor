@@ -85,20 +85,23 @@ namespace test010
             texto.text = rumor;
         }
 
-        private void armarMision(mision q)
+        private void armarMision(mision m)
         {            
             Text texto = ui_conversar.transform.GetChild(4).gameObject.GetComponent<Text>();
+            bool esta = GameObject.Find("control/diario").GetComponent<diario>().estaMision(m.getNombre());
+            mision q = GameObject.Find("control/diario").GetComponent<diario>().getMision(m.getNombre());
 
-            if (!q.estaAgregado())
+            if (!esta)
             {
-                texto.text = q.getInfoPre();
-                q.agregarAlDiario();
-                q.crearEventoMision();
+                texto.text = m.getInfoPre();
+                m.agregarAlDiario();
+                m.crearEventoMision();
             }
             else if (q.estaTerminada())
             {
                 texto.text = q.getInfoPost();
-                q.seCompleto();
+                q.completado = true;
+                m.completado = true;
             }
             else
             {
